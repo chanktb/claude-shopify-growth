@@ -15,7 +15,7 @@ user-invokable: true
 argument-hint: "<collection-url-or-handle> [--site <domain>] [--cannibal-pair <handle2>] [--no-gsc] [--no-curation-check] [--tier hub|brand|sub|tool|new|mega-hub] [--strict] [--format markdown|json]"
 license: MIT
 metadata:
-  author: "Khue Tran (ktbteam) — collection-analyze rubric modeled on blog-analyze by The Minh Nguyen (NextGrowth.AI)"
+  author: "Khue Tran — collection-analyze rubric modeled on blog-analyze by The Minh Nguyen (NextGrowth.AI)"
   version: "0.2.1"
   last_modified: "2026-06-21"
   recent_change: "v0.2.1 — Content-placement rubric overhaul: Cat 1.1 caps above-grid copy at 20-40w tagline (was 40-120w); Cat 1.2 redefines below-grid as FAQ accordion 300-500w (was 150w long-form). Above-grid >60w now triggers Cat 5.9 penalty (product cards pushed below fold). Field lesson: collection pages must prioritize product visibility; long-form copy lives in expandable FAQ below grid, not above. v0.2.0 was Add --strict + mega-hub tier + mandate GSC in pipeline mode."

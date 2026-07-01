@@ -14,7 +14,7 @@ user-invokable: true
 argument-hint: "<site-domain> [--tier-2-top N] [--no-tier-2] [--no-gsc] [--cannibal-only] [--format html|md|json]"
 license: MIT
 metadata:
-  author: "Khue Tran (ktbteam)"
+  author: "Khue Tran"
   version: "0.1.0"
   last_modified: "2026-06-21"
   recent_change: "v0.1.0 — Initial release. 2-tier pipeline (metadata quick-scan all + deep-scan bottom-quartile) + site-wide cannibal detection."

@@ -15,7 +15,7 @@ user-invokable: true
 argument-hint: "<collection-handle-or-url> [--site <domain>] [--tier mega-hub|brand-hub] [--dry-run] [--skip-template]"
 license: MIT
 metadata:
-  author: "Khue Tran (ktbteam)"
+  author: "Khue Tran"
   version: "1.6.0"
   category: optimize
   composite_baseline: "48-65 / 100"

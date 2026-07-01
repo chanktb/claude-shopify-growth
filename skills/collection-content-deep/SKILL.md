@@ -16,7 +16,7 @@ user-invokable: true
 argument-hint: "<collection-url-or-handle> [--site <domain>] [--length 1500|2000|2500] [--sections N] [--no-images] [--blog-links N] [--brand-tone wholesale|consumer|specialty-pro]"
 license: MIT
 metadata:
-  author: "Khue Tran (ktbteam)"
+  author: "Khue Tran"
   version: "0.1.0"
   last_modified: "2026-06-21"
   recent_change: "v0.1.0 — Initial release. 8-section template, brand knowledge prefill, HTML body output for metafield-driven render."

@@ -162,7 +162,7 @@ Have a request or want to contribute a module? Open an issue.
 
 ## Credits
 
-Built by **[Khue Tran](https://khuetran.com)** (ktbteam), a marketer and operator
+Built by **[Khue Tran](https://khuetran.com)**, a marketer and operator
 building AI tools for ecommerce. More write-ups at [khuetran.com](https://khuetran.com).
 
 The `collection-analyze` rubric was modeled on the `blog-analyze` scoring approach
