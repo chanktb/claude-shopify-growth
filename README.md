@@ -57,6 +57,9 @@ The standout gate: the `Product` / `Offer` schema must mirror the visible
 price/availability byte-for-byte, so an optimized page never trips a
 Merchant-Center disapproval.
 
+> **Applying fixes:** content is per-product data you rewrite; schema/render is a
+> one-time theme change. See [docs/how-fixes-apply.md](docs/how-fixes-apply.md).
+
 ---
 
 ## How the collection optimizer works (18 HARD gates)
@@ -174,7 +177,7 @@ claude-shopify-growth/
 │   └── reduce_emdash.py               # em-dash density reducer (Gate 4)
 ├── knowledge-base/                     # your private product KB (git-ignored)
 ├── examples/                           # sanitized sample outputs
-├── docs/QUICKSTART.md
+├── docs/                               # QUICKSTART + how-fixes-apply (data vs theme)
 ├── config.example.env
 ├── install.sh / install.ps1
 └── LICENSE  (MIT)
