@@ -120,6 +120,12 @@ Medium and where partial credit applies.
 | G5 | 0 clicks, >500 impressions (90d) | Snippet drag: ranking exists, nobody clicks → rewrite title/meta |
 | G6 | Description duplicated across >5 products | Thin/duplicate content; cannibalizes + gets discounted |
 | G7 | `alt` missing on >50% of images | Image-search + accessibility loss |
+| G8 | Duplicate `Product` or `AggregateRating` (theme + app both emit) | Invalid markup; Google ignores or flags it — audit first, never blind-add |
+
+**Drift note**: G2 (schema price ≠ visible price) doubles as the staleness
+detector — a static schema block that fell out of sync after a price/stock change
+fails G2. Fix by live-binding the dynamic fields (see `product-schema.md` §0),
+not by re-pushing a number.
 
 🛑 = also a Merchant-Center feed risk; surface prominently for stores running
 Google Shopping.

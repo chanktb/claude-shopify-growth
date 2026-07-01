@@ -193,6 +193,12 @@ recommendation. GATES do not zero the score, but several also carry a
 5. **GSC: 0 clicks AND > 500 impressions in 90d** (severe title/meta drag → rewrite)
 6. **Description duplicated across > 5 products** (manufacturer boilerplate → thin content)
 7. **Image `alt` missing on > 50% of images** (accessibility + image-search loss)
+8. **Duplicate / conflicting schema** — two `Product` blocks OR two `AggregateRating` blocks on one page (theme + a review app both emit). Invalid; Google may ignore or flag it.
+
+> **Drift detection**: GATE 2 (schema `price` ≠ visible price) is also how you
+> catch a *stale* schema — a static block that fell out of sync after a price or
+> stock change fails GATE 2. The fix is to live-bind the dynamic fields (see
+> `references/product-schema.md` §0), not to re-push a fresh number.
 
 ### Step 4: Generate Fix Recommendations
 

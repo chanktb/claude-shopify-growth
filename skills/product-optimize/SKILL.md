@@ -139,11 +139,23 @@ Link the PDP into the graph, all verified live (Gate 1):
 **HARD GATE 1 (URL inventory)**: never write a `/collections/` or `/products/` or
 `/blogs/articles/` link without confirming it in an inventory pull.
 
-### Step 8: Product schema bundle
+### Step 8: Product schema bundle (audit-first, never duplicate)
 
-Build/verify the `Product` + `Offer` + (`AggregateRating` if real reviews) +
-`BreadcrumbList` + `additionalProperty` + `FAQPage` bundle per
-`../product-analyze/references/product-schema.md`.
+Do NOT blindly push a fresh schema block. First check what the theme + review
+apps already emit (from Step 1 / `product-analyze`), then act:
+
+- **Theme already emits `Product` + `Offer`** (Dawn and most themes do) → verify it
+  is correct and **live-bound** (price/availability from the variant object, not a
+  frozen value); add ONLY the missing pieces (usually `additionalProperty` +
+  `FAQPage`). Never add a second `Product` block.
+- **A review app already emits `AggregateRating`** → leave it; never double-emit.
+- **No schema present** → add the full bundle via a theme snippet bound to live
+  objects (push to a DUPLICATE theme for preview).
+
+Split by volatility: **dynamic fields (price, availability, rating) render live
+from Liquid** so they self-update when price/stock/reviews change; **static fields
+(specs, description, brand, gtin, FAQ) are content you push once.** See
+`../product-analyze/references/product-schema.md` §0 for the decision table.
 
 **🚨 HARD GATE 7 (feed-safe schema) 🛑**: `Offer.price` and `Offer.availability`
 MUST mirror the visible buy box byte-for-byte (per selected variant; use

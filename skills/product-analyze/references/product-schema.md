@@ -10,6 +10,51 @@ gives AI engines structured facts to cite. Emit it once per product page.
 
 ---
 
+## 0. Two decisions before you touch schema
+
+### A. Dynamic vs static — what to render live, what to store
+
+Some fields change constantly (price, stock, ratings); some rarely change
+(specs, description). Split them:
+
+| Field | Changes | How to emit |
+|---|---|---|
+| `Offer.price` / `AggregateOffer.low/highPrice` | every price edit / sale | **Live-render** from Liquid: `{{ product.selected_or_first_available_variant.price | money_without_currency }}` |
+| `Offer.availability` | every inventory move | **Live-render**: `{% if variant.available %}InStock{% else %}OutOfStock{% endif %}` |
+| `AggregateRating.ratingValue` / `reviewCount` | every new review | **Live-render** from the reviews app's object (or leave the app's own injected block) |
+| `name`, `description`, `brand`, `gtin`/`mpn`/`sku` | rarely | Store as content / metafield |
+| `additionalProperty` (specs) | rarely | Store as metafield (mirror the visible table) |
+| `FAQPage` | rarely | Store the flat `[{q,a}]` metafield; the theme builds the wrapper |
+
+**Never freeze a dynamic field into a static metafield.** A pushed static price is
+correct for exactly one day: the next sale or restock makes the schema lie and
+trips Gate 7 (feed disapproval). Dynamic fields must bind to the live product /
+variant / reviews object so they update themselves; static content you push once.
+
+This is the real answer to "what if price or reviews change": if the dynamic
+fields are live-bound, they never drift. A periodic **product refresh** (roadmap)
+re-verifies the rendered page still matches, as a backstop, and Gate G2
+(schema price ≠ visible price) is the drift detector on any audit.
+
+### B. Does the theme (or a review app) already emit this?
+
+Most modern themes (Dawn included) already output `Product` + `Offer` JSON-LD, and
+review apps (Judge.me, Loox, Stamped) inject `AggregateRating`. **Two `Product`
+blocks, or two `AggregateRating` blocks, on one page is invalid** — Google picks
+one arbitrarily or flags it. So the workflow is audit-first, never blind-add:
+
+1. **Audit** what's already emitted (`product-analyze` extracts every JSON-LD block).
+2. **Present + correct** → leave it. Add ONLY the pieces that are MISSING — usually
+   `additionalProperty` specs and `FAQPage` — via metafields or a small snippet.
+3. **Present but wrong/incomplete** (no `priceValidUntil`, availability mapped
+   wrong, missing `gtin`) → **fix the existing snippet**, do not add a parallel block.
+4. **A review app already emits `AggregateRating`** → never also emit your own.
+
+The templates below are the target *shape*. Use them to fill gaps or fix a
+snippet, not to bolt a second bundle onto a page that already has one.
+
+---
+
 ## 1. Core `Product` + `Offer`
 
 ```json
