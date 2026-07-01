@@ -1,0 +1,34 @@
+# --- Secrets & local config -------------------------------------------------
+.env
+.env.*
+!config.example.env
+*.pem
+*.key
+secrets/
+
+# --- Store-owned knowledge base (NEVER commit real product/business data) ----
+# The knowledge base holds your first-party product specs, pricing, sales data,
+# and positioning. It is private. Only the template + README are tracked.
+knowledge-base/*
+!knowledge-base/README.md
+!knowledge-base/INDEX.example.md
+!knowledge-base/.gitkeep
+
+# --- Per-run output (per-hub artifacts, baselines, scores) -------------------
+output/
+workspace/
+articles/
+*.baseline-snapshot.json
+
+# --- Python -----------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# --- OS / editor ------------------------------------------------------------
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
