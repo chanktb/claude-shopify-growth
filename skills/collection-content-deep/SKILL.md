@@ -4,7 +4,7 @@ description: >
   Generate long-form below-grid editorial content for Shopify collection
   mega-hubs (1,500–2,000 words across 8 sections: Category Overview, Brand
   Spotlight, How to Pick, Comparison Table, Application Guide, Care &
-  Maintenance, Wholesale Info, Related Blog Reads). Brand-specific knowledge
+  Maintenance, Pricing Info, Related Blog Reads). Brand-specific knowledge
   prefill (fill in `references/brand-knowledge-base.md` with your own
   brands). Output HTML body suitable for Shopify metafield
   `custom.deep_content_html` rendered by the matching `collection-content`
@@ -13,10 +13,10 @@ description: >
   collection", "long-form collection page", "expand collection beyond FAQ",
   "collection-content-deep".
 user-invokable: true
-argument-hint: "<collection-url-or-handle> [--site <domain>] [--length 1500|2000|2500] [--sections N] [--no-images] [--blog-links N] [--brand-tone wholesale|consumer|salon-pro]"
+argument-hint: "<collection-url-or-handle> [--site <domain>] [--length 1500|2000|2500] [--sections N] [--no-images] [--blog-links N] [--brand-tone wholesale|consumer|specialty-pro]"
 license: MIT
 metadata:
-  author: "Khue (ktbteam)"
+  author: "Khue Tran (ktbteam)"
   version: "0.1.0"
   last_modified: "2026-06-21"
   recent_change: "v0.1.0 — Initial release. 8-section template, brand knowledge prefill, HTML body output for metafield-driven render."
@@ -68,22 +68,22 @@ Each section gets a heading + body. Total target: 1,500–2,000 words.
 
 ### Section 1: Category Overview (200–300w)
 
-What is the category, why salons + DIY pros use it, key benefits.
+What is the category, why professional buyers + DIY shoppers use it, key benefits.
 
-**Field lesson**: wholesale-friendly + salon-pro-focused.
+**Field lesson**: pricing-friendly + professional-buyer-focused.
 Address the buyer's professional decision, not just shopping inspiration.
 
 **Required elements**:
 - 1-sentence definition of the category
 - 2–3 key benefits (commercial intent)
-- Quick-stat callout (e.g. "<N> House Brand SKUs in stock daily")
+- Quick-stat callout (e.g. "<N> in-stock SKUs across Brand A/B/C daily")
 
 ### Section 2: Brand Spotlight (300–400w)
 
 3–5 brands compared by personality. Each brand gets ~80w covering:
 - Founding / heritage 1 sentence
 - Positioning (premium / value / specialty)
-- Unique value (formula / shade depth / price tier)
+- Unique value (formulation / variant depth / price tier)
 
 **Knowledge base**: see `references/brand-knowledge-base.md` — a template
 for you to fill in with your own brand profiles (Brand A, Brand B, Brand C,
@@ -92,26 +92,27 @@ etc.).
 ### Section 3: How to Pick (200–250w)
 
 Decision tree by buyer use-case:
-- **DIY pro** — what to pick + why
-- **Salon pro (low volume)** — what to pick + why
-- **High-volume salon** — what to pick + why
-- **Sensitive client (HEMA reactions)** — what to pick + why
+- **DIY / individual buyer** — what to pick + why
+- **Professional buyer (low volume)** — what to pick + why
+- **High-volume professional / business buyer** — what to pick + why
+- **Sensitive-use customer (allergy or sensitivity concerns)** — what to pick + why
 - **Beginner** — what to pick + why
 
 Format: `<dl>` definition list OR 3-column grid block.
 
 ### Section 4: Comparison Table (150–200w + HTML table)
 
-5–6 brands × 4–5 dimensions (cure time, durability, shade range, price
-tier, HEMA-free status).
+5–6 brands × 4–5 dimensions (performance metric, durability, variant
+range, price tier, sensitive-use / allergen-free status).
 
 Table format: semantic `<table>` with proper `<thead>` / `<tbody>` / `<th>`
 scope. Styling inherits from theme.
 
 ### Section 5: Application Guide (200–300w)
 
-Step-by-step for the category's primary use-case (manicure for gel
-polish, mani for dipping powder, etc.).
+Step-by-step for the category's primary use-case (setup for a
+variant-rich product line, assembly for a kit, first-use steps for a
+technical product, etc.).
 
 Format: ordered list `<ol>` with each step containing:
 - Step name (bold)
@@ -120,21 +121,23 @@ Format: ordered list `<ol>` with each step containing:
 
 ### Section 6: Care & Maintenance (150–200w)
 
-How to extend wear / safely remove / store properly. Reinforces
-post-purchase value, drives re-purchase signal to Shopify analytics.
+How to extend product life / reset or refresh properly / store correctly.
+Reinforces post-purchase value, drives re-purchase signal to Shopify
+analytics.
 
 Topics:
-- Longevity tips (avoid water, use cuticle oil, etc.)
-- Removal best practice (soak-off method per category)
+- Longevity tips (usage habits, protective steps, etc.)
+- Maintenance best practice (cleaning/reset method per category)
 - Storage (temperature, light, shelf-life)
 
-### Section 7: Wholesale Info (100–150w)
+### Section 7: Pricing Info (100–150w)
 
-Your store's wholesale positioning + volume discount tiers + free shipping
-threshold. Closes the commercial-intent loop.
+Your store's pricing model (retail, wholesale, and/or B2B) + volume
+discount tiers + free shipping threshold. Closes the commercial-intent
+loop.
 
 **Store-specific facts** (fill in with your own policy):
-- Wholesale pricing eligibility (open to everyone, or account-gated)
+- Pricing model eligibility (open to everyone, or account-gated wholesale/B2B tier)
 - Free shipping threshold
 - Bulk / volume discount tiers
 - Dispatch time commitment (e.g. same-day cutoff)
@@ -173,11 +176,11 @@ brands by product count → these are the brands featured in Section 2 + 4.
 
 For each of the 8 sections, generate text using:
 - Brand knowledge base (`references/brand-knowledge-base.md`)
-- Store-specific facts (wholesale policy, shipping threshold, dispatch
+- Store-specific facts (pricing policy, shipping threshold, dispatch
   commitment, etc. — see Section 7)
-- Category-specific knowledge (e.g. gel polish vs dipping powder vs nail
-  lacquer differences, or the equivalent distinctions for your product
-  category)
+- Category-specific knowledge (e.g. the distinctions between product
+  lines/variants/formats within your category, per the category-tier
+  taxonomy)
 
 ### Step 4: Em-dash + AI-trigger compliance & Readability Constraints (Paragraph Limits)
 

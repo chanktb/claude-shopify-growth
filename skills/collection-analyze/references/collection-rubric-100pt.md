@@ -28,23 +28,23 @@ budget does NOT change; only the bar-to-pass shifts:
 ### 1.1 Above-grid intro copy (4 pts)
 
 **Pass criteria**: 40–120 words placed BEFORE the product grid. Must:
-- State who the collection is for (DIY, salon pro, wholesale buyer)
+- State who the collection is for (DIY/hobbyist, professional buyer, bulk/B2B buyer)
 - Name 2–3 differentiators (price tier, brand exclusivity, application use-case)
-- End on a buying-decision micro-cue ("Pick the kit if you're starting; pick the
+- End on a buying-decision micro-cue ("Pick the starter set if you're new; pick the
   refill if you already own the base")
 
 **Anti-patterns** (auto-deduct):
 - "Welcome to our X collection. Shop our X today." (boilerplate)
 - Copy-paste across multiple collections with only the noun swapped
-- Pure keyword stuffing ("Buy Brand A gel polish gel polish Brand A polish")
+- Pure keyword stuffing ("Buy Brand A widget widget Brand A widget")
 
 ### 1.2 Below-grid SEO copy (4 pts, hub/brand only)
 
 **Pass criteria**: ≥150 words AFTER the product grid; covers 2+ supporting topics:
-- How-to-apply / how-to-pick
+- How-to-use / how-to-pick
 - "Which one is for me" (variant decision tree)
 - FAQ block (3–5 questions)
-- Compatibility notes (base/top gel pairings, lamp wattage, etc.)
+- Compatibility notes (accessory pairings, spec requirements, etc.)
 
 Optional but high-lift: a curated "Editor's Pick" mini-list with 3 SKU links
 back into the collection.
@@ -52,7 +52,7 @@ back into the collection.
 ### 1.3 Voice match BRAND.md (3 pts)
 
 If `sites/[site]/BRAND.md` exists, sample 3–5 sentences from the body and check:
-- Tone (wholesale / pro vs DIY-friendly per site BRAND)
+- Tone (B2B/bulk / pro vs DIY-friendly per site BRAND)
 - Forbidden taboo phrases listed in BRAND.md
 - First-person POV (if site uses "we")
 - No AI-flavored hedging ("delve into", "in conclusion", "it's important to note")
@@ -105,13 +105,13 @@ brand-recognized (your-store.com → site-brand abbreviation optional).
 120–160 chars. Must include:
 - Primary commercial keyword
 - A specific number or detail (product count, brand count, free-ship threshold)
-- Soft CTA ("Shop now" / "See all colors" / "Wholesale price for everyone")
+- Soft CTA ("Shop now" / "See all options" / "Bulk pricing for everyone")
 
 ### 2.3 H1 match user intent (3 pts)
 
 H1 should equal the collection title OR a search-optimized rewrite.
-- ✅ "Brand A Gel Colors" → H1 = "Brand A Gel Colors" (`<N>` products)
-- ❌ "Brand B Builder Gel in the Bottle **Colletion**" → typo in title cascades to H1
+- ✅ "Brand A Variants" → H1 = "Brand A Variants" (`<N>` products)
+- ❌ "Brand B Premium Line **Colletion**" → typo in title cascades to H1
 
 ### 2.4 URL structure (2 pts)
 
@@ -191,9 +191,9 @@ Template in `references/schema-collectionpage.md`. Must include:
 ```json
 {
   "@type": "CollectionPage",
-  "name": "Brand A Gel Colors",
+  "name": "Brand A Variants",
   "description": "...",
-  "url": "https://your-store.com/collections/brand-a-gel-color",
+  "url": "https://your-store.com/collections/brand-a-variants",
   "mainEntity": { "@type": "ItemList", ... }
 }
 ```
@@ -255,8 +255,8 @@ For sub/tool/new tier: hero image is nice-to-have, 2/3 score if missing.
 
 ### 5.2 Price visible on cards (3 pts)
 
-Compare-at + sale + savings badge if applicable. Wholesale-price badge if the
-site runs a wholesale pricing model.
+Compare-at + sale + savings badge if applicable. Bulk/wholesale-price badge if the
+site runs a bulk or wholesale pricing model.
 
 ### 5.3 Stock indicator (2 pts)
 
@@ -274,7 +274,7 @@ For hub/brand: ≥3 facets (color, size, brand, type, price range).
 For sub/tool/new: nice-to-have, 2/3 score if missing.
 
 Examples:
-- `{example-hub-collection}` (hub, `<N>` products) → MUST have Brand + Color + Size filters
+- `{example-hub-collection}` (hub, `<N>` products) → MUST have Brand + Color/Option + Size filters
 - `{example-sub-collection}` (sub, `<N>` products) → 1 facet ok
 
 ### 5.6 Social proof (2 pts)
@@ -319,8 +319,8 @@ Verdict matrix:
 Always include the GSC click counts of both pages — the merge direction goes
 toward the higher-click page.
 
-Example: `brand-a-builder-gel-in-the-bottle-colletion` (V1, `<N>` products) vs
-`brand-a-builder-gel-2-collection` (V2 = "Version 2", `<N>` products). If V1
+Example: `brand-a-premium-line-colletion` (V1, `<N>` products) vs
+`brand-a-premium-line-2-collection` (V2 = "Version 2", `<N>` products). If V1
 has more clicks/90d than V2 — merge V2 → V1. But ALSO fix the V1 handle typo
 (`colletion` → `collection`) with a 301 redirect chain V1.old → V1.new.
 

@@ -5,7 +5,7 @@ re-iterating the step that owns the gate. Gates 1-6 are the baseline; Gates
 7-11 were added after a production audit found systemic gaps across a batch of
 hubs; Gates 0 + 12 were added after a content run hallucinated facts (Gate 0)
 and then leaked internal source labels into client-facing copy (Gate 12); Gate
-13 was added after a near-miss cloned a gel template onto a hardware collection.
+13 was added after a near-miss cloned a variant-rich template onto a hardware collection.
 Gates 14-18 are documented in the main `SKILL.md` gate table.
 
 ---
@@ -25,7 +25,7 @@ beats Shopify titles + a model estimate.
 | Tier | Source | Authority | Action |
 |------|--------|-----------|--------|
 | TIER_INTERNAL | `knowledge-base/*.md` | Highest | Read + extract facts as the content foundation |
-| TIER_SHOPIFY | Shopify Admin GraphQL | High | Verify count vs shade. HEAD-check URLs |
+| TIER_SHOPIFY | Shopify Admin GraphQL | High | Verify count vs variant. HEAD-check URLs |
 | TIER_WEBFETCH | External WebFetch | Fallback | Only when KB + Shopify have gaps |
 | TIER_GUESS | Model estimate | **NEVER** | Block publish |
 
@@ -254,29 +254,28 @@ live URL. Composite ≥85/100 OR the hub doesn't ship — go back and fix the ga
 
 ---
 
-## Gate 7: Fact-check numeric claims (NEVER conflate productsCount with shade count)
+## Gate 7: Fact-check numeric claims (NEVER conflate productsCount with variant count)
 
 **Owner**: Step 6 (deep content) + Step 8 (FAQ).
 
-**Rule**: Before writing any "X shades", "X colors", "X individual bottles",
-"X variants", "X duos" claim, pull the collection's product list and verify the
+**Rule**: Before writing any "X variants", "X options", "X individual units",
+"X colors", "X sizes" claim, pull the collection's product list and verify the
 count refers to individual items, not bundles/sets.
 
-**Failure mode**: Shopify `productsCount` returns the SKU count, not the shade
-count. A collection with `productsCount: N` can contain:
-- 1 SKU = "Set 240 Colors" (covers 240 shades inside 1 SKU)
-- 1 SKU = "Collection Vol 2.1" (a themed multi-shade set)
-- Many "Bundle" SKUs (each contains multiple shades)
-- A handful of individual shade SKUs
+**Failure mode**: Shopify `productsCount` returns the SKU count, not the
+per-variant count. A collection with `productsCount: N` can contain:
+- 1 SKU = "Set of 240" (covers 240 items inside 1 SKU)
+- 1 SKU = "Collection Vol 2.1" (a themed multi-item set)
+- Many "Bundle" SKUs (each contains multiple items)
+- A handful of individual-item SKUs
 
-→ Claiming "N shades" is misleading when most SKUs are sets. The true
-individual-shade count is unknown without summing the multi-shade SKUs.
+→ Claiming "N variants" is misleading when most SKUs are sets. The true
+individual-item count is unknown without summing the multi-item SKUs.
 
-**Field lesson**: a hub once claimed "N-shade gel polish foundation library"
-when the collection was mostly kits and sets, not individual shades. A scan of
-the first 30 products showed most titles contained "Set", "Bundle", or
-"Collection Vol". Fix: "N SKUs across individual gel shades, themed bundles,
-and curated sets".
+**Field lesson**: a hub once claimed an "N-item foundation library" when the
+collection was mostly kits and sets, not individual items. A scan of the first
+30 products showed most titles contained "Set", "Bundle", or "Collection Vol".
+Fix: "N SKUs across individual items, themed bundles, and curated sets".
 
 **How to apply**:
 
@@ -292,27 +291,27 @@ query VerifyShadeCount {
 ```
 
 Scan product titles for these keywords (case-insensitive). If >20% of the first
-30 hit, refuse the "X shades" phrasing:
+30 hit, refuse the "X variants" phrasing:
 
 | Keyword | Likely meaning |
 |---|---|
-| `Set` | Multi-shade SKU |
-| `Bundle` | Multi-shade SKU |
-| `Collection` (in title) | Themed multi-shade |
-| `Trio` / `Duo` (when in line title) | Multi-shade |
+| `Set` | Multi-item SKU |
+| `Bundle` | Multi-item SKU |
+| `Collection` (in title) | Themed multi-item |
+| `Trio` / `Duo` (when in line title) | Multi-item |
 | `Kit` / `Combo` / `Pack` | Multi-product |
-| `Vol.` / `Volume X` | Multi-shade per release |
-| `X Colors` (e.g. "240 Colors") | Single SKU = X shades inside |
+| `Vol.` / `Volume X` | Multi-item per release |
+| `X-Pack` / `X Colors` (e.g. "240 Colors") | Single SKU = X items inside |
 | "Holiday" / "Spring" / "Fall" + "Collection" | Likely a themed set |
 
 **Safe phrasings**:
-- ✅ "N SKUs (individual shades + curated sets)"
-- ✅ "N products across individual shades and bundles"
-- ❌ "N shades" — when the collection has sets
-- ❌ "N colors" — same
+- ✅ "N SKUs (individual items + curated sets)"
+- ✅ "N products across individual items and bundles"
+- ❌ "N variants" — when the collection has sets
+- ❌ "N options" — same
 
-**When you CAN say "X shades"**: only if the scan shows >80% of products are
-single-shade SKUs.
+**When you CAN say "X variants"**: only if the scan shows >80% of products are
+single-item SKUs.
 
 ---
 

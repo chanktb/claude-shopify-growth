@@ -49,7 +49,7 @@ Without this, the Step 13 notifier just prints a skip line and the run continues
 Start read-only. Score one page:
 
 ```
-/collection-analyze https://your-store.com/collections/gel-color
+/collection-analyze https://your-store.com/collections/running-shoes
 ```
 
 Or scan the whole catalog and get a prioritized queue of what to fix first:
@@ -63,7 +63,7 @@ Or scan the whole catalog and get a prioritized queue of what to fix first:
 Pick a mega-hub or brand-hub from the audit and run the full playbook:
 
 ```
-/collection-mega-hub-optimize gel-color --site your-store.com
+/collection-mega-hub-optimize running-shoes --site your-store.com
 ```
 
 What happens:

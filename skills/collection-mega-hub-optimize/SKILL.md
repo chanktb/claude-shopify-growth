@@ -5,7 +5,7 @@ description: >
   collection page from a low baseline composite score (48-65) to 85+/100.
   Combines collection-analyze (audit) + collection-content-deep (1,500-2,000w
   content) + a hybrid template + internal linking + an optional brand-suffix
-  title override. Field-tested at scale on a large nail-supply catalog's
+  title override. Field-tested at scale on a large multi-brand ecommerce catalog's
   mega-hubs (mean composite lift +30-35 points). Includes HARD gates: zero URL
   hallucination, zero em-dash, zero AI-trigger phrases, branded H1,
   brand-suffix opt-out, 4-schema bundle. Use when the user says "optimize
@@ -15,7 +15,7 @@ user-invokable: true
 argument-hint: "<collection-handle-or-url> [--site <domain>] [--tier mega-hub|brand-hub] [--dry-run] [--skip-template]"
 license: MIT
 metadata:
-  author: "ktbteam"
+  author: "Khue Tran (ktbteam)"
   version: "1.6.0"
   category: optimize
   composite_baseline: "48-65 / 100"
@@ -94,7 +94,7 @@ grep -l -i "<product-keyword>" knowledge-base/*.md
 | Tier | Source | Authority | Action |
 |------|--------|-----------|--------|
 | **TIER_INTERNAL** | `knowledge-base/*.md` | Highest | Read silently. Extract facts. Use as the foundation. |
-| **TIER_SHOPIFY** | Shopify Admin GraphQL (Step 1 pulls) | High | Verify count vs shade. HEAD-check URLs. |
+| **TIER_SHOPIFY** | Shopify Admin GraphQL (Step 1 pulls) | High | Verify count vs variant. HEAD-check URLs. |
 | **TIER_WEBFETCH** | External WebFetch | Fallback | Only when KB + Shopify don't cover it (regulatory, third-party newer specs). |
 | **TIER_GUESS** | Model estimate beyond the above | **NEVER acceptable** | Block content publish. |
 
@@ -160,7 +160,7 @@ After the baseline pull, check the `templateSuffix` value:
 | templateSuffix value | Action |
 |---|---|
 | `null` / empty string | ✅ Uses the default template `collection.json` → has `collection-content` + `collection-faq` sections → deep content + FAQ accordion render. Proceed normally. |
-| Any string value (e.g. `acrylic-powder`, `new-arrivals`) | 🚨 **Custom template** assigned. Deep content (`custom.deep_content_html`) + FAQ accordion (`custom.faq_jsonld`) **MAY NOT render visibly**. FAQ JSON-LD schema typically still renders (SEO benefit retained). STOP and surface to the site owner: "Collection uses custom templateSuffix=<value>. Confirm: (a) switch to the default template, or (b) add `collection-content` + `collection-faq` sections to the custom template before pushing content." Get explicit go-ahead before proceeding. |
+| Any string value (e.g. `custom-template`, `new-arrivals`) | 🚨 **Custom template** assigned. Deep content (`custom.deep_content_html`) + FAQ accordion (`custom.faq_jsonld`) **MAY NOT render visibly**. FAQ JSON-LD schema typically still renders (SEO benefit retained). STOP and surface to the site owner: "Collection uses custom templateSuffix=<value>. Confirm: (a) switch to the default template, or (b) add `collection-content` + `collection-faq` sections to the custom template before pushing content." Get explicit go-ahead before proceeding. |
 
 **Why check early**: a custom template can accept all metafields successfully
 and render the FAQ JSON-LD schema (SEO/AI-citation benefit), yet NOT render the
@@ -189,7 +189,7 @@ broken layout.
 | productsCount < 100 SKUs **AND** single-brand seasonal | **DEFAULT (seasonal)** | **Path A** |
 
 **Path A — DEFAULT collection workflow** (sub-collection, seasonal, brand sub-line):
-- Step 6: tier-aware deep content template (gel 8-section / tools 10-section / seasonal 7-section / bundle 7-section / nail-art 9-section / sub 8-section)
+- Step 6: tier-aware deep content template (variant-rich 8-section / hardware 10-section / seasonal 7-section / bundle 7-section / specialty 9-section / sub 8-section)
 - Step 8 metafields: 4 total
   - `custom.deep_content_html`
   - `custom.faq_jsonld` (flat `[{q,a},...]` format)
@@ -244,10 +244,10 @@ Apply the **Path 2 override pattern**:
 
 Pattern: `{Brand or Category} {Product Lines}: {USP or Modifier}`
 
-Examples (as reference for shape only):
-- "Brand A Gel Polish, Color Craze & Dipping Powder Wholesale" (~54ch)
-- "Brand B GelColor, Infinite Shine, Powder Perfection" (~55ch)
-- "Acrylic & Dipping Powder: Brand A, Brand B, Brand C Wholesale" (~60ch)
+Examples (as reference for shape only, across different verticals):
+- "Brand A Running Shoes: Trail, Road & Racing Wholesale" (~50ch)
+- "Brand B Wireless Earbuds, Over-Ear & Sport Headphones" (~52ch)
+- "Standing Desks: Brand A, Brand B, Brand C at Wholesale" (~53ch)
 
 **HARD GATE 2 (title length)**: HTML title ≤60ch on live-page verify (Step 12).
 
@@ -286,31 +286,31 @@ guess specs.
 **🚨 TIER-AWARE CONTENT DEPTH (Gate 13)**: the content section template VARIES
 by product category. Pick the correct tier template before writing:
 
-| Category tier | Section template | Typical word count | Visual assets |
-|---------------|------------------|-------------------|----------------|
-| **gel/dip/polish** (color products) | 8-section gel template (Why stock → Lines → How to pick → Compare table → How to apply → Care → Wholesale → Related) | 1,500-2,000w | Hero only |
-| **tools/lamps/drill/dust-collector/files** (technical hardware) | **10-section tools template** (see below) | **1,800-2,500w** | **Hero + spec chart SVG + product detail callouts** |
-| **bundles/sets** (multi-product SKUs) | 7-section bundle template (focus on bundle composition + value math) | 1,200-1,700w | Hero + bundle composition diagram |
-| **bulk-save** (volume tier) | 6-section pricing-led template (focus on discount math + reorder workflow) | 1,000-1,500w | Hero + pricing table |
-| **seasonal** (spring/summer/fall/winter duo collections) | 7-section seasonal template (focus on promotion calendar + theme story) | 1,200-1,700w | Hero + seasonal color story |
-| **nail art** (specialty effect gels: cat eye, chrome, etc.) | 9-section art template (technique-led: workflow steps + companion pairings + seasonal mapping) | 1,500-2,000w | Hero + technique callouts |
+| Category tier | Example verticals | Section template | Typical word count | Visual assets |
+|---|---|---|---|---|
+| **variant-rich** (one line, many colors/styles/sizes) | apparel colorways, cosmetics, paint colors | 8-section template (Why stock → Lines → How to pick → Compare table → How to use → Care → Pricing → Related) | 1,500-2,000w | Hero only |
+| **technical / hardware** (spec-driven durables) | electronics, tools, appliances, equipment | **10-section hardware template** (see below) | **1,800-2,500w** | **Hero + spec chart SVG + product detail callouts** |
+| **bundles / sets / kits** (multi-item SKUs) | gift sets, starter kits, multipacks | 7-section bundle template (composition + value math) | 1,200-1,700w | Hero + bundle composition diagram |
+| **consumables / bulk** (volume tier) | supplies, refills, wholesale volume | 6-section pricing-led template (discount math + reorder workflow) | 1,000-1,500w | Hero + pricing table |
+| **seasonal / drops** (time-boxed collections) | holiday lines, seasonal apparel, limited editions | 7-section seasonal template (promotion calendar + theme story) | 1,200-1,700w | Hero + seasonal story |
+| **specialty / premium** (niche or effect products) | artisan, premium, effect goods | 9-section specialty template (use-case led: workflow + companion pairings + seasonal mapping) | 1,500-2,000w | Hero + use-case callouts |
 
-**The 10-section tools template (REQUIRED for nail-drill, lamps, dust collector, files, buffers, brushes-as-tools)**:
+**The 10-section hardware template (REQUIRED for any spec-driven durable: electronics, tools, appliances, equipment, machines)**:
 
-1. **Why salons stock this tool** — what the tool does + scope at the site
+1. **Why buyers choose this category** — what the product does + scope at the site
 2. **The catalog at the store** — list product types/models with a key spec one-liner per model
-3. **Specs comparison table** — RPM range / wattage / weight / noise dB / bit shank size / handpiece weight / cord length etc. (the parametric spine that differentiates models)
-4. **How to pick the right model** — `<ul>` with 4-6 use-case scenarios mapped to spec ranges (e.g. "Salon doing 8+ sets/day: pick 35,000+ RPM brushless")
-5. **Bit / accessory compatibility** — what tips/bits/discs work with which handpiece. Cross-link to the bit-set collection
-6. **Application + safety workflow** — `<ol>` step-by-step proper use + safety callouts (heat, vibration, eye protection)
-7. **Maintenance + sterilization** — how to clean the handpiece, when to replace burs, disinfection workflow (CDC / state board references where applicable)
-8. **Care + troubleshooting** — common failure modes (motor overheating, RPM drop, vibration) + fix actions
-9. **Wholesale pricing at the store** — pricing model + bundle discounts
-10. **Related collections at the store** + **Related reads** (bit sets, lamps, dust collectors, ergonomics guides)
+3. **Specs comparison table** — the parametric spine that differentiates models (power, capacity, weight, dimensions, materials, ratings, warranty, etc.)
+4. **How to pick the right model** — `<ul>` with 4-6 use-case scenarios mapped to spec ranges (e.g. "High-volume / daily professional use: pick the higher-capacity model")
+5. **Accessory / consumable compatibility** — which add-ons, parts, or consumables fit which model. Cross-link to the accessories collection
+6. **Setup + safe-use workflow** — `<ol>` step-by-step proper use + safety callouts
+7. **Maintenance + care** — cleaning, part replacement, and upkeep (per manufacturer / industry guidance where applicable)
+8. **Troubleshooting** — common failure modes + fix actions
+9. **Pricing at the store** — pricing model + bundle discounts
+10. **Related collections at the store** + **Related reads** (accessories, companion products, buying guides)
 
 **Mandatory visual assets for the tools tier**:
 - 🟡 **Hero PNG (1200×630) — FLAGGED ONLY, SKIP auto-gen**. Auto-generated hero images are quality-rejected by default; note in the Step 13 summary "Hero pending owner upload" + suggest a pick strategy (best_seller / top_brand / product_type_diverse). Resume auto-gen only on an explicit override.
-- **Inline SVG spec chart** — comparison of RPM/wattage/weight across 3-5 top models (a simple hand-written bar chart, fits inside the deep-content HTML)
+- **Inline SVG spec chart** — comparison of 1-2 key specs across 3-5 top models (a simple hand-written bar chart, fits inside the deep-content HTML)
 - 3-5 product detail image callouts — reference existing Shopify product images via `<img>` tags inside the deep content. Use CDN URLs from the Shopify product `featuredMedia.preview.image.url`. Add `alt` text.
 
 **Content voice rule (HARD GATE 12)**: write content as the store's own product
@@ -319,7 +319,7 @@ knowledge in a natural voice. NEVER expose internal source labels:
 - ❌ "Pro tip from the KB", "KB sales script", "the knowledge base recommends"
 - ❌ "per our internal data", "according to our database"
 - ✅ "Product X is the #1 best-selling line in this category" (state the fact directly)
-- ✅ "The 18 coded palettes (P01 through P18) ship..." (state the structure directly)
+- ✅ "The 18 coded variants (V01 through V18) ship..." (state the structure directly)
 - ✅ "Three companion products pair with Product X..." (state the recommendation directly)
 
 Customers don't know what "KB" is. Source labels reveal internal workflow,
@@ -331,9 +331,9 @@ Invoke the `collection-content-deep` skill. The 8-section template:
 2. **Brand spotlight** — `<h3>` per brand with positioning + price tier
 3. **How to pick the right brand** — `<ul>` with 4-6 use-case scenarios
 4. **Comparison table** — `<table>` brand × dimension matrix
-5. **Application guide** — `<ol>` step-by-step workflow + a Pro tip callout
-6. **Care & maintenance for clients** — `<ul>` 3 rules + a salon-storage paragraph
-7. **Wholesale pricing at the store** — pricing model + bulk discount info
+5. **How-to / usage guide** — `<ol>` step-by-step workflow + a Pro tip callout
+6. **Care & maintenance for buyers** — `<ul>` 3 rules + a storage/handling paragraph
+7. **Pricing at the store** — pricing model + bulk discount info
 8. **Related reads** — 4 blog links
 
 Plus 2 link layers (Step 7).
@@ -521,7 +521,7 @@ python scripts/notify_collection_publish.py \
   --handle <collection-handle> \
   --url https://your-store.com/collections/<handle> \
   --mode optimize \
-  --tier <mega-hub|brand-hub|sub|tools|seasonal|bundle|bulk-save|nail-art|gel> \
+  --tier <mega-hub|brand-hub|sub|hardware|seasonal|bundle|bulk|specialty|variant-rich> \
   --reason "<one-line why: GSC rank, content gap, refresh trigger>" \
   --baseline "<GSC 90d: imp / clicks / pos>" \
   --change "<one-line what shipped: template, sections, hero, schema>" \
@@ -584,13 +584,13 @@ sub-agent returns a 1-line summary to the main session at a fraction of the cost
 | 4 | Em-dash compliance | 0 em-dash (`—`) anywhere in editorial copy |
 | 5 | Link health | 0 broken `/collections/` or `/blogs/articles/` link |
 | 6 | Composite score | ≥85/100 on the live re-score |
-| 7 | Fact-check numeric claims | NEVER conflate productsCount with shade count. Pull product titles + scan for "Set/Bundle/Collection/Trio/Kit/Vol." keywords. Use "X SKUs" or "X products" if >20% of items are sets/bundles. |
+| 7 | Fact-check numeric claims | NEVER conflate productsCount with variant count. Pull product titles + scan for "Set/Bundle/Collection/Trio/Kit/Vol." keywords. Use "X SKUs" or "X products" if >20% of items are sets/bundles. |
 | 8 | Per-collection OG image | `og:image` must be collection-specific, NOT the site-default placeholder. **RELAXED**: if the collection has an existing live image (not the site default), Gate 8 passes even if it isn't a new hero. Do not block publish for a hero placeholder; FLAG for the owner to upload a real image. Gate 8 fails ONLY when `og:image` = the site-default banner placeholder. |
 | 9 | Above-grid tagline 20-40w | `collection.description` (rendered in the banner) must be a 20-40 word tagline summarizing the hub's USP + count + key brands. An empty description, or one containing raw inline images (`<img>` tags), fails. Inline images must be purged to avoid layout clutter. |
 | 10 | Filter sidebar enabled | `main-collection-product-grid` must have `show_filters: true` and `disabled: false`. Browse-by-brand showcase templates that disable the grid lose filter UX and fail Cat 5. |
 | 11 | Sub-collection nav present | At least one `collection-list-grid` OR `sub-category-nav` section with ≥6 sub-collection handles in the template order. Failing means clients can't navigate brand sub-lines. |
 | **12** | **No source labels in content** | **0 mentions of "KB", "the knowledge base", "KB notes", "KB sales script", "per our internal data" in the published HTML. Customers cannot see internal source attribution. Write facts directly as the store's product knowledge in a natural voice.** |
-| **13** | **Tier-aware content depth** | **Content sections + visual assets MUST match the product-category tier. Tools/lamps/drill use the 10-section technical template with a specs comparison table + SVG chart + product detail images. Bundles use the 7-section pricing-led template. Gel uses the 8-section gel template. Picking the wrong tier = re-write.** |
+| **13** | **Tier-aware content depth** | **Content sections + visual assets MUST match the product-category tier. Technical/hardware uses the 10-section template with a specs comparison table + SVG chart + product detail images. Bundles use the 7-section composition template. Variant-rich uses the 8-section template. Picking the wrong tier = re-write.** |
 | **14** | **Publish notification sent (optional)** | **If a channel is configured, run `scripts/notify_collection_publish.py` AFTER live verification (Step 12) confirms gates 0-13 pass. Credentials from a local `.env`. Skipped cleanly when unconfigured.** |
 | **15** | **FAQ live render verify** | **Run curl & grep to ensure `collection-faq__question-text` returns ≥3 lines with actual question text. Fails if empty (metafield shape wrong).** |
 | **16** | **Custom templateSuffix check** | **`templateSuffix` must be null/empty, or if non-null, the owner must explicitly approve. Custom templates without content sections fail to render.** |
@@ -600,9 +600,9 @@ sub-agent returns a 1-line summary to the main session at a fraction of the cost
 Failing any gate blocks the push. Re-iterate the step that owns the gate.
 
 **Field lessons that added gates:**
-- Gate 13 was added after a near-miss where the gel content template was about to be cloned onto a hardware (nail-drill) collection — which would have missed the specs comparison, bit compatibility, RPM/wattage chart, ergonomics, and maintenance/sterilization content that a hardware buyer needs.
+- Gate 13 was added after a near-miss where a variant-rich content template was about to be cloned onto a technical hardware collection — which would have missed the specs comparison, compatibility, spec chart, and maintenance content that a hardware buyer needs.
 - Gates 0 + 12 were added after a content run skipped the KB and hallucinated facts, then a rewrite fixed the facts but leaked internal "KB" source labels into client-facing copy.
-- Gate 7 was added after a hub claimed "N shades" when the collection was mostly bundles and sets, not individual shades.
+- Gate 7 was added after a hub claimed "N variants" when the collection was mostly bundles and sets, not individual products.
 - Gates 8-11 were added after a production audit found generic site OG images, empty taglines, disabled filter sidebars, and wrong sub-collection nav handles across a batch of hubs.
 
 ## Composition with other skills
@@ -643,7 +643,7 @@ redo the step:
 - **KB-first factcheck** (Gate 0) — the factcheck priority order is TIER_INTERNAL → TIER_SHOPIFY → TIER_WEBFETCH; a model estimate is never acceptable. MOST critical.
 - **Never invent URLs** (Gate 1) — pull the inventory, link only verified handles/slugs.
 - **Em-dash discipline** (Gate 4) — ≤0.3 em-dash per 100 words, hard target 0.
-- **Product count vs shades** (Gate 7) — never conflate `productsCount` with shade count.
+- **Product count vs variants** (Gate 7) — never conflate `productsCount` with variant count.
 - **Same-brand-first URL discipline** — when fixing a 404, prefer a same-brand collection over a generic one.
 
 ## Factcheck priority order (cross-reference)

@@ -13,12 +13,12 @@ structured-data bundle, 12-20 verified internal links, a keyword-dense
 sub-60-character title, and a sub-collection nav. Every step is guarded by a HARD
 gate so nothing ships half-done. More modules are on the [roadmap](#roadmap).
 
-> Field-tested at scale on a large multi-brand nail-supply catalog (mean
+> Field-tested at scale on a large multi-brand ecommerce catalog (mean
 > composite-score lift of +30-35 points per hub). Generalized here into a
 > store-agnostic, MIT-licensed kit. No store data, credentials, or business
 > figures are included — your product knowledge is a private, git-ignored input.
 
-License: MIT · Requires: Claude Code + a Shopify MCP connector
+License: MIT · Built by [Khue Tran](https://khuetran.com) · Requires: Claude Code + a Shopify MCP connector
 
 ---
 
@@ -27,7 +27,7 @@ License: MIT · Requires: Claude Code + a Shopify MCP connector
 | Skill | What it does | Invoke |
 |---|---|---|
 | **collection-analyze** | Scores a collection page on a 100-point composite rubric (copy quality, SEO + commercial intent, curation, technical/schema, UX). Reports gaps. | `/collection-analyze <url>` |
-| **collection-content-deep** | Generates 1,500-2,000w tier-aware deep content (gel / tools / bundle / seasonal / nail-art templates) with a comparison table, application guide, FAQ, and internal-link zones. | `/collection-content-deep <url>` |
+| **collection-content-deep** | Generates 1,500-2,000w tier-aware deep content (variant-rich / hardware / bundle / seasonal / specialty templates) with a comparison table, application guide, FAQ, and internal-link zones. | `/collection-content-deep <url>` |
 | **collection-audit-pipeline** | Portfolio-wide two-tier audit: a fast metadata scan across ALL collections, then a full `collection-analyze` deep-dive on the bottom quartile. Produces a prioritized action queue. | `/collection-audit-pipeline <site>` |
 | **collection-mega-hub-optimize** | The end-to-end playbook that chains the above into a 12-step / 18-gate optimization run from baseline to ≥85/100. | `/collection-mega-hub-optimize <handle>` |
 
@@ -51,10 +51,10 @@ The mega-hub workflow refuses to ship a page that fails any gate. Highlights:
 - **Gate 3 — Zero AI-trigger phrases** ("Discover", "Elevate", "Seamless"...).
 - **Gate 4 — Zero em-dashes** in editorial copy (AI-detection hygiene).
 - **Gate 6 — Composite ≥85/100** on a live re-score, or it doesn't ship.
-- **Gate 7 — No conflating `productsCount` with shade count** (sets/bundles ≠ shades).
+- **Gate 7 — No conflating `productsCount` with variant count** (sets/bundles ≠ individual items).
 - **Gates 8-11 — OG image, above-grid tagline, filter sidebar, sub-collection nav.**
 - **Gate 12 — No internal source labels** leak into customer-facing copy.
-- **Gate 13 — Tier-aware content depth** (a nail drill gets a specs table, not gel copy).
+- **Gate 13 — Tier-aware content depth** (a hardware product gets a specs table, not variant-list copy).
 - **Gates 15-18 — Live FAQ render, custom-template pre-flight, sub-nav render, FAQ length.**
 
 Full detail: [`skills/collection-mega-hub-optimize/SKILL.md`](skills/collection-mega-hub-optimize/SKILL.md)
@@ -87,13 +87,13 @@ Then in Claude Code run `/reload-plugins` (or restart the session) and the
 
 ```
 # 1. Audit a single collection page
-/collection-analyze https://your-store.com/collections/gel-color
+/collection-analyze https://your-store.com/collections/running-shoes
 
 # 2. Audit the whole catalog and get a prioritized queue
 /collection-audit-pipeline your-store.com
 
 # 3. Optimize one hub end-to-end
-/collection-mega-hub-optimize gel-color --site your-store.com
+/collection-mega-hub-optimize running-shoes --site your-store.com
 ```
 
 See [`docs/QUICKSTART.md`](docs/QUICKSTART.md) for a full walkthrough.
@@ -162,6 +162,11 @@ Have a request or want to contribute a module? Open an issue.
 
 ## Credits
 
-Built by **ktbteam**. The `collection-analyze` rubric was modeled on the
-`blog-analyze` scoring approach by The Minh Nguyen (NextGrowth.AI). Contributions
-welcome via issues and PRs.
+Built by **[Khue Tran](https://khuetran.com)** (ktbteam), a marketer and operator
+building AI tools for ecommerce. More write-ups at [khuetran.com](https://khuetran.com).
+
+The `collection-analyze` rubric was modeled on the `blog-analyze` scoring approach
+by **The Minh Nguyen** ([NextGrowth.AI](https://nextgrowth.ai)) — see his kit at
+[github.com/thenguyenvn90/claude-growth](https://github.com/thenguyenvn90/claude-growth).
+
+Contributions welcome via issues and PRs.

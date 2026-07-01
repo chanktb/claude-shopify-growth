@@ -5,11 +5,11 @@ Step 0.5 uses this table to find which `pk-*.md` file covers a given collection.
 
 | Product-line keyword(s) | KB file | Covers |
 |---|---|---|
-| gel color, gel polish | `pk-brand-a-gel-color.md` | Brand A gel color line: palettes, positioning, price tier |
-| dipping powder, dip | `pk-brand-a-dip.md` | Brand A dipping powder system, application, pairings |
-| builder gel, biab | `pk-builder-gel.md` | Builder / BIAB lines, versions, techniques |
-| nail drill, e-file | `pk-tools-drill.md` | Drills/e-files: RPM, wattage, bits, maintenance |
-| lamp, curing lamp | `pk-tools-lamps.md` | Curing lamps: wattage, timers, compatibility |
+| core line, main range | `pk-brand-a-core.md` | Brand A core line: variants, positioning, price tier |
+| pro, premium | `pk-brand-a-pro.md` | Brand A pro/premium line: use cases, pairings |
+| hardware, device, electronics | `pk-hardware.md` | Spec-driven durables: key specs, compatibility, maintenance |
+| accessories, add-ons | `pk-accessories.md` | Accessories: which items fit which product |
+| kit, bundle, set | `pk-bundles.md` | Kits/bundles: composition, value math |
 | third-party brands | `pk-third-party-brands.md` | Carried third-party brands: specs, positioning |
 
 Guidelines:

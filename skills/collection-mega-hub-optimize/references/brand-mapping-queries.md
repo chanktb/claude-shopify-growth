@@ -83,24 +83,24 @@ that show the shape, not real data:
 ### Brand A family
 | Sub-line | Handle | Products |
 |---|---|---|
-| Gel Polish | `brand-a-gel-color` | `<count>` |
-| Gel & Lacquer Duo | `brand-a-gel-lacquer` | `<count>` |
-| Dipping Powder | `brand-a-dipping-powder` | `<count>` |
+| Core line | `brand-a-core` | `<count>` |
+| Pro line | `brand-a-pro` | `<count>` |
+| Accessories | `brand-a-accessories` | `<count>` |
 | All Products (umbrella) | `brand-a-all-products` | `<count>` |
 
 ### Brand B family
 | Sub-line | Handle | Products |
 |---|---|---|
-| Gel Colors | `brand-b-gel-color` | `<count>` |
-| Nail Lacquer | `brand-b-nail-lacquer` | `<count>` |
+| Core line | `brand-b-core` | `<count>` |
+| Premium line | `brand-b-premium` | `<count>` |
 | All Products (umbrella) | `brand-b-all-products` | `<count>` |
 
 ### Cross-hub categories (linkable from any brand-hub)
 | Category | Handle | Products |
 |---|---|---|
-| All Gel Color | `gel-color` | `<count>` |
-| Gel & Lacquer Duos | `gel-lacquer` | `<count>` |
-| Builder Gel | `builder-gel` | `<count>` |
+| Best sellers | `best-sellers` | `<count>` |
+| New arrivals | `new-arrivals` | `<count>` |
+| Bundles & sets | `bundles-sets` | `<count>` |
 
 ---
 

@@ -2,7 +2,7 @@
 
 This is a **template**, not real data. Fill in one profile per brand you
 carry, using your own product knowledge. Do not publish or commit real
-pricing, shade counts, or sales figures to a public repo — keep a filled-in
+pricing, variant counts, or sales figures to a public repo — keep a filled-in
 copy of this file private if it contains competitively sensitive detail.
 
 Each brand profile feeds Section 2 (Brand Spotlight) and Section 4
@@ -11,7 +11,7 @@ profile covering heritage, positioning, unique value, and your store's
 availability/advantage notes.
 
 **Voice rule**: match your store's tone (e.g. wholesale-friendly,
-consumer-friendly, salon-pro-focused). Address the buyer's actual decision
+consumer-friendly, specialty-pro-focused). Address the buyer's actual decision
 criteria for your category.
 
 **Em-dash rule**: keep em-dash usage very low (≤0.3 per 100 words). Prefer
@@ -22,10 +22,11 @@ colons or periods.
 ## {Brand Name}
 
 One-paragraph overview: founding story or heritage (1 sentence), the
-product lines/sub-systems this brand offers, what makes its formula or
-catalog distinct, and any notable certification or safety claim relevant
-to your category (e.g. an allergen-free or "sensitive-friendly" line).
-Mention the pack sizes or formats your store carries.
+product lines/variants this brand offers, what makes its construction,
+materials, or specs distinct, and any notable certification or safety
+claim relevant to your category (e.g. an allergen-free, hypoallergenic,
+or "sensitive-friendly" line). Mention the pack sizes or formats your
+store carries.
 
 **Positioning**: {e.g. value / mid-tier / premium, and the one-line reason
 why}
@@ -51,18 +52,19 @@ pull consistent dimensions across brands.)
 ## Cross-brand comparison guidance (for Section 4 tables)
 
 When generating comparison tables, define the dimensions that matter for
-your category. Examples for a beauty/cosmetics catalog:
+your category. Examples for an apparel, cosmetics, electronics, or home
+goods catalog:
 
 | Dimension | Notes |
 |---|---|
-| Performance metric (e.g. cure time, dry time, wear time) | Fill in typical range per brand. |
+| Performance metric (e.g. setup time, load time, wear time) | Fill in typical range per brand. |
 | Durability claim | Fill in typical range per brand. |
-| Sensitive-use / allergen-free formula | List which brands/lines qualify. |
+| Sensitive-use / allergen-free formula | List which brands/lines qualify (if relevant to your category). |
 | Price tier | Group brands into value / mid / premium bands. |
 | Wholesale minimum | State your store's policy (e.g. no minimum). |
 | Best-fit customer segment | e.g. high-volume buyer vs. boutique vs. DIY. |
-| Catalog size / shade or variant range | Use a placeholder count, not a real number. |
-| Compatibility | Any shared equipment, tools, or systems across brands. |
+| Catalog size / variant or option range | Use a placeholder count, not a real number. |
+| Compatibility | Any shared equipment, accessories, or systems across brands. |
 
 Replace every bracketed placeholder above with your own brand data before
 using this file in production. Nothing in this template should be treated

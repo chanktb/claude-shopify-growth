@@ -15,7 +15,7 @@ user-invokable: true
 argument-hint: "<collection-url-or-handle> [--site <domain>] [--cannibal-pair <handle2>] [--no-gsc] [--no-curation-check] [--tier hub|brand|sub|tool|new|mega-hub] [--strict] [--format markdown|json]"
 license: MIT
 metadata:
-  author: "Khue (ktbteam) — modeled on blog-analyze by The Minh Nguyen (NextGrowth.AI)"
+  author: "Khue Tran (ktbteam) — collection-analyze rubric modeled on blog-analyze by The Minh Nguyen (NextGrowth.AI)"
   version: "0.2.1"
   last_modified: "2026-06-21"
   recent_change: "v0.2.1 — Content-placement rubric overhaul: Cat 1.1 caps above-grid copy at 20-40w tagline (was 40-120w); Cat 1.2 redefines below-grid as FAQ accordion 300-500w (was 150w long-form). Above-grid >60w now triggers Cat 5.9 penalty (product cards pushed below fold). Field lesson: collection pages must prioritize product visibility; long-form copy lives in expandable FAQ below grid, not above. v0.2.0 was Add --strict + mega-hub tier + mandate GSC in pipeline mode."
@@ -108,10 +108,10 @@ per tier (see `references/collection-rubric-100pt.md` §Tier Adjustments):
 | Tier | Detection rule | Rubric emphasis |
 |------|----------------|-----------------|
 | **mega-hub** (v0.2.0+) | `productsCount ≥ 2000` AND ruleSet is OR-union of 3+ product types | Sub-navigation required; filter sidebar Brand+Color+Type+Size all required; "browse by brand" tiles below grid |
-| **hub** | `productsCount ≥ 1000` (and < 2000) OR title is a generic category ("Gel Polish", "Acrylic & Dipping Powder") | Schema + hero image + sort/filter UX weighted higher |
+| **hub** | `productsCount ≥ 1000` (and < 2000) OR title is a generic category (e.g. "Electronics", "Apparel & Accessories") | Schema + hero image + sort/filter UX weighted higher |
 | **brand** | Title starts with a brand name AND `productsCount` 100–999 | SEO title format + brand-keyword H1 weighted higher |
 | **sub** | Title is a sub-collection ("Brand A Spring 2026", "Brand B Winter Collection", `productsCount` < 100) | Freshness + new-arrival schema weighted higher |
-| **tool** | Title contains "Bit", "Lamp", "Drill", "Tool", "Brush" | Curation price-tier check stricter (Tools have a high price floor — configure per store; see curation-warning-rules.md) |
+| **tool** | Title contains "Tool", "Equipment", "Hardware", "Device", "Accessory" | Curation price-tier check stricter (technical/hardware items have a high price floor — configure per store; see curation-warning-rules.md) |
 | **new** | Published in last 30 days | Tier `sub` weights + Critical fix if schema missing |
 
 User can override with `--tier`. Pipeline mode (collection-audit-pipeline)
@@ -168,9 +168,9 @@ fold and triggers a Cat 5.9 penalty.
 | Check | Points | Pass Criteria |
 |-------|--------|---------------|
 | `<title>` format + length | 4 | 30–60 chars; "{Brand or Category} + {Modifier} + Site Brand"; includes primary keyword |
-| Meta description format + length | 3 | 120–160 chars; ends with a soft CTA + USP (free ship / wholesale price / next-day) |
+| Meta description format + length | 3 | 120–160 chars; ends with a soft CTA + USP (free ship / bulk pricing / next-day) |
 | H1 match user intent | 3 | H1 = collection title OR a search-friendly rewrite; not boilerplate |
-| URL structure | 2 | `/collections/{kebab-handle}`; no typos (cf. `brand-a-builder-gel-in-the-bottle-colletion`); ≤6 segments |
+| URL structure | 2 | `/collections/{kebab-handle}`; no typos (cf. `brand-a-premium-line-colletion`); ≤6 segments |
 | Canonical | 2 | Self-canonical; no canonical pointing to a different collection |
 | Hreflang (if multi-locale) | 2 | Present and correct, or N/A for single-locale stores |
 | GSC CTR signal | 3 | CTR ≥ 2% at average position 1–10. If position 1–10 but CTR <1.5% → title/meta drag |
@@ -215,7 +215,7 @@ If `--no-curation-check` is set, this category falls back to a flat 15/20
 | Check | Points | Pass Criteria |
 |-------|--------|---------------|
 | Hero image present (not `null`) | 3 | Listed collection image OR header hero block visible. Penalize hub/brand tier with `image=null` heavily. |
-| Price visible on cards | 3 | Compare-at strikethrough + sale price; "Wholesale price" badge if applicable |
+| Price visible on cards | 3 | Compare-at strikethrough + sale price; "Bulk/wholesale price" badge if applicable |
 | Stock indicator | 2 | "Low stock" / "In stock" / "Out of stock" badge visible |
 | Sort dropdown | 2 | Best Selling + Price + New + Alpha all available |
 | Filter sidebar | 3 | ≥3 facets for hub/brand (color, type, size, brand) — sub/tool tier exempt |

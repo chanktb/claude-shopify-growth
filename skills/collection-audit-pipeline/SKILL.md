@@ -14,7 +14,7 @@ user-invokable: true
 argument-hint: "<site-domain> [--tier-2-top N] [--no-tier-2] [--no-gsc] [--cannibal-only] [--format html|md|json]"
 license: MIT
 metadata:
-  author: "Khue (ktbteam)"
+  author: "Khue Tran (ktbteam)"
   version: "0.1.0"
   last_modified: "2026-06-21"
   recent_change: "v0.1.0 — Initial release. 2-tier pipeline (metadata quick-scan all + deep-scan bottom-quartile) + site-wide cannibal detection."
@@ -80,7 +80,7 @@ For each collection, apply tier rules from `collection-analyze` SKILL.md:
 - hub: 1000–1999 or generic-category title
 - brand: 100–999 + brand-prefix title
 - sub: <100 + sub-collection naming
-- tool: title contains "Bit"/"Lamp"/"Drill"/"Tool"/"Brush"
+- tool: title contains "Kit"/"Device"/"Tool"/"Accessory"/"Hardware"
 - new: published in last 30 days
 
 ### Phase 3 — Tier 1 quick-scan score (in-memory)
@@ -127,7 +127,7 @@ See `references/cannibal-detection.md` for the matrix logic. Output:
 
 Special-case detection: explicit version naming (V1/V2/Ver1/Ver 2/B1) →
 default to DIFFERENTIATE. Field lesson: version-numbered collections (e.g.
-"Builder Gel V1" vs "Builder Gel V2") usually represent distinct product
+"{Product Line} V1" vs "{Product Line} V2") usually represent distinct product
 generations sold in parallel, not duplicate/cannibalizing pages — treat them
 as PARALLEL OK unless product overlap is near-total.
 

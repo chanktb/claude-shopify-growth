@@ -9,10 +9,10 @@ Usage:
     --site your-store.com \
     --handle example-collection \
     --url https://your-store.com/collections/example-collection \
-    --tier tools \
+    --tier hardware \
     --reason "GSC rank opportunity, tools-tier content debut" \
     --baseline "<imp> imp / <clicks> clicks / pos <n> (90d)" \
-    --change "10-section tools template + specs table + SVG chart + maintenance"
+    --change "10-section hardware template + specs table + SVG chart + maintenance"
 
 Credentials: reads TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID from a local .env file.
 The .env path is taken from the COLLECTION_OPTIMIZER_ENV environment variable,
@@ -30,15 +30,15 @@ sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 ENV_PATH = os.environ.get('COLLECTION_OPTIMIZER_ENV', os.path.join(os.getcwd(), '.env'))
 
 TIER_ICONS = {
-    'mega-hub':   '🏛️',
-    'brand-hub':  '🏷️',
-    'sub':        '📦',
-    'tools':      '🔧',
-    'seasonal':   '🌸',
-    'bundle':     '🎁',
-    'bulk-save':  '💰',
-    'nail-art':   '🎨',
-    'gel':        '💅',
+    'mega-hub':     '🏛️',
+    'brand-hub':    '🏷️',
+    'sub':          '📦',
+    'hardware':     '🔧',
+    'seasonal':     '🌸',
+    'bundle':       '🎁',
+    'bulk':         '💰',
+    'specialty':    '✨',
+    'variant-rich': '🎨',
 }
 
 MODE_ICONS = {
@@ -89,7 +89,7 @@ def main():
     ap.add_argument('--handle', required=True, help='collection handle, e.g. example-collection')
     ap.add_argument('--url', required=True, help='live URL')
     ap.add_argument('--mode', default='optimize', choices=['new', 'optimize', 'refresh'])
-    ap.add_argument('--tier', default='', help='mega-hub|brand-hub|sub|tools|seasonal|bundle|bulk-save|nail-art|gel')
+    ap.add_argument('--tier', default='', help='mega-hub|brand-hub|sub|hardware|seasonal|bundle|bulk|specialty|variant-rich')
     ap.add_argument('--reason', required=True, help='one-line why (GSC rank, content gap, refresh trigger)')
     ap.add_argument('--baseline', default='', help='GSC baseline 90d — e.g. "33,679 imp / 155 clicks / pos 12.7"')
     ap.add_argument('--change', default='', help='one-line what changed (template, sections, hero, schema)')

@@ -32,8 +32,8 @@ Report format:
 ```
 Curation Watchlist — Active Status
   - <N> / <N> ACTIVE (<X>%)
-  - 1 DRAFT: "Brand A Iceland - Polar Eskimo" (gid://shopify/Product/...)
-  - 1 ARCHIVED: "Brand B DC Fall Sample" (gid://shopify/Product/...)
+  - 1 DRAFT: "Brand A Winter Edition - Sample SKU" (gid://shopify/Product/...)
+  - 1 ARCHIVED: "Brand B Fall Sample" (gid://shopify/Product/...)
 ```
 
 ## 2. Inventory (in-stock)
@@ -51,18 +51,18 @@ in-stock / OOS report.
 
 Each product category should have a defined price floor/ceiling for your
 store. Out-of-tier products in a collection break commercial intent. Define
-your own table; example shape for a nail-supply store:
+your own table; example shape mapped to the canonical category-tier taxonomy:
 
-| Category | Floor | Ceiling | Notes |
+| Category tier | Floor | Ceiling | Notes |
 |---|---|---|---|
-| Tools / equipment / drills | `$<floor>` | open | High-value durable goods get a high floor |
-| Core consumable (e.g. polish/color) | `$<floor>` | `$<ceiling>` | Premium brands can exceed |
-| Bulk consumable (e.g. powder) | `$<floor>` | `$<ceiling>` | Premium lines priced at the top |
-| Brushes / applicators | `$<floor>` | `$<ceiling>` | Pro sets at top |
-| Small accessory (file, buffer, tip) | `$<floor>` | `$<ceiling>` | Bulk-pack at top |
-| Specialty consumable | `$<floor>` | `$<ceiling>` | Per-unit varies |
-| Gift sets / bundles | `$<floor>` | `$<ceiling>` | Wide range — usually exempt |
-| Wholesale lots / kits | `$<floor>` | open | Exempt — bulk pricing |
+| Technical / hardware (electronics, tools, appliances) | `$<floor>` | open | High-value durable goods get a high floor |
+| Variant-rich core product (e.g. one line in many colors/styles) | `$<floor>` | `$<ceiling>` | Premium brands can exceed |
+| Consumables / bulk (volume or refill purchases) | `$<floor>` | `$<ceiling>` | Premium lines priced at the top |
+| Accessories / add-ons | `$<floor>` | `$<ceiling>` | Pro/premium sets at top |
+| Small accessory (single-unit, low-cost item) | `$<floor>` | `$<ceiling>` | Bulk-pack at top |
+| Specialty / premium consumable | `$<floor>` | `$<ceiling>` | Per-unit varies |
+| Bundles / sets / kits | `$<floor>` | `$<ceiling>` | Wide range — usually exempt |
+| Wholesale lots / B2B kits | `$<floor>` | open | Exempt — bulk pricing |
 
 Detection: pull first 50 product prices in the collection. Compare to category
 floor (auto-detect category from collection title + tags).
@@ -71,10 +71,10 @@ floor (auto-detect category from collection title + tags).
 - 70–89% in tier → 🟡 warning + list outliers
 - < 70% in tier → 🟠 warning + suggest splitting collection
 
-Example: a "tools" collection (`<N>` products, includes lamps + drills) has an
-expected high price floor. If half the products fall below that floor, that's
-a curation contamination — the collection is mixing cheap accessories with
-higher-value tools.
+Example: a "technical/hardware" collection (`<N>` products, includes devices +
+equipment) has an expected high price floor. If half the products fall below
+that floor, that's a curation contamination — the collection is mixing cheap
+accessories with higher-value hardware.
 
 ## 4. Collection size health
 
@@ -113,7 +113,7 @@ inspect product vendor / brand tag:
 - < 60% → 🔴 GATE (force-flag in main report)
 
 Exception: if collection title explicitly says "Brand A, Brand B, Brand C
-Gel & Lacquer" (multi-brand bundle) — skip this check.
+Combo Pack" (multi-brand bundle) — skip this check.
 
 ## How warnings are presented
 
@@ -124,12 +124,12 @@ In the main report, under a `## Curation Watchlist` section (after the Critical
 ## Curation Watchlist (warnings — does NOT affect composite score)
 
 ### Active status — <X>% pass
-- 1 DRAFT product surfacing: "Brand A Iceland - Polar Eskimo"
+- 1 DRAFT product surfacing: "Brand A Winter Edition - Sample SKU"
 - Fix: change status to ACTIVE in Shopify admin, OR remove from collection
 
 ### Price tier — <X>% in tier (category expected `$<floor>`–`$<ceiling>`)
 - <N> products above ceiling:
-  - "Brand B Builder Gel Mega Kit" — `$<price>` (kit, likely tier mismatch)
+  - "Brand B Mega Bundle Kit" — `$<price>` (kit, likely tier mismatch)
   - "Brand A Pro Studio Set" — `$<price>` (set, likely tier mismatch)
   - ...
 - Suggestion: move kits/sets to a separate "Kits & Sets" collection
