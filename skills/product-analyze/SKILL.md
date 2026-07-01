@@ -66,7 +66,22 @@ Pull data from THREE sources, in parallel where possible:
 - SEO fields (`seo.title`, `seo.description`), metafields (specs, reviews app)
 - createdAt, updatedAt, publishedAt
 
-**1b. WebFetch the public URL** — render the page and extract:
+**1b. Fetch the public URL** — use `curl` for anything in `<head>` and any
+JSON-LD, and a rendered read (WebFetch / headless) only for visible content:
+
+> ⚠️ **Do NOT use WebFetch for `<title>`, meta, canonical, OG tags, or JSON-LD.**
+> WebFetch converts the page to markdown and silently drops `<head>` tags and
+> `<script type="application/ld+json">` blocks — you will get a false "ABSENT".
+> Always `curl` for schema + head:
+> ```bash
+> curl -sL -A "Mozilla/5.0" "<url>" | grep -oE '"@type" *: *"[A-Za-z]+"' | sort | uniq -c
+> curl -sL "<url>" | grep -oiE '<link[^>]*rel="canonical"[^>]*>|<meta[^>]*name="description"[^>]*>'
+> ```
+> A page can carry BreadcrumbList + Organization + WebSite schema yet have NO
+> `Product`/`Offer` block — check for the `Product` @type **specifically**, not
+> just "some JSON-LD exists".
+
+Extract (curl for head/schema, render for the rest):
 - `<title>`, meta description, canonical, OG/Twitter tags
 - H1 (must equal product name, single H1)
 - Description body: word count, uniqueness signal, bullet/scannability

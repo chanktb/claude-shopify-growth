@@ -180,7 +180,9 @@ model:haiku, ...)`) and read the 1-line summary:
 1. Em-dash = 0; AI-trigger = 0 across title + meta + description + FAQ.
 2. HTML title ≤60ch on the live page.
 3. Every internal link returns 200 (HEAD check).
-4. **Schema `price`/`availability` == visible buy box** (Gate 7, re-verified live).
+4. **Schema `price`/`availability` == visible buy box** (Gate 7, re-verified live
+   via `curl -sL <url> | grep` for the JSON-LD — never verify schema with
+   WebFetch, it strips `<script ld+json>` and reports a false "ABSENT").
 5. Every image has non-empty `alt` (Gate 9).
 6. FAQ renders (flat `[{q,a}]`, not a schema.org wrapper) — grep the live page.
 

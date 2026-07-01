@@ -125,7 +125,9 @@ Then in Claude Code run `/reload-plugins` (or restart the session) and the
 /product-optimize your-product --site your-store.com
 ```
 
-See [`docs/QUICKSTART.md`](docs/QUICKSTART.md) for a full walkthrough.
+See [`docs/QUICKSTART.md`](docs/QUICKSTART.md) for a full walkthrough. Want to see
+the output first? Here's a sample report:
+[`examples/product-analyze-example.md`](examples/product-analyze-example.md).
 
 ---
 
@@ -171,6 +173,7 @@ claude-shopify-growth/
 │   ├── notify_collection_publish.py   # optional Telegram notify (Gate 14)
 │   └── reduce_emdash.py               # em-dash density reducer (Gate 4)
 ├── knowledge-base/                     # your private product KB (git-ignored)
+├── examples/                           # sanitized sample outputs
 ├── docs/QUICKSTART.md
 ├── config.example.env
 ├── install.sh / install.ps1
