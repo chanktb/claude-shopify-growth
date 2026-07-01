@@ -1,14 +1,17 @@
-# claude-collection-optimizer
+# claude-shopify-growth
 
-A [Claude Code](https://claude.com/claude-code) skill kit for **auditing and
-optimizing Shopify collection pages** — mega-hubs, brand-hubs, and category
-pages — for Google rankings and AI-search citations.
+A [Claude Code](https://claude.com/claude-code) skill kit for growing **Shopify
+ecommerce stores** with Claude: SEO + GEO optimization and content generation
+across collections, products, and blog.
 
-It takes a thin collection page ("empty tagline + missing schema + zero internal
-links") and turns it into a deep, well-structured hub: 1,500-2,000 words of
-tier-aware content, a 4-schema structured-data bundle, 12-20 verified internal
-links, a keyword-dense sub-60-character title, and a sub-collection nav. Every
-step is guarded by a HARD gate so nothing ships half-done.
+**Available now — the collection module.** A four-skill workflow that audits and
+optimizes Shopify collection pages (mega-hubs, brand-hubs, category pages) for
+Google rankings and AI-search citations. It takes a thin collection page ("empty
+tagline + missing schema + zero internal links") and turns it into a deep,
+well-structured hub: 1,500-2,000 words of tier-aware content, a 4-schema
+structured-data bundle, 12-20 verified internal links, a keyword-dense
+sub-60-character title, and a sub-collection nav. Every step is guarded by a HARD
+gate so nothing ships half-done. More modules are on the [roadmap](#roadmap).
 
 > Field-tested at scale on a large multi-brand nail-supply catalog (mean
 > composite-score lift of +30-35 points per hub). Generalized here into a
@@ -19,7 +22,7 @@ License: MIT · Requires: Claude Code + a Shopify MCP connector
 
 ---
 
-## The four skills
+## The collection module (available now)
 
 | Skill | What it does | Invoke |
 |---|---|---|
@@ -65,8 +68,8 @@ Clone, then run the installer for your OS. It copies the skills to
 `~/.claude/skills/` and the helper scripts to `~/.claude/scripts/`.
 
 ```bash
-git clone https://github.com/<your-org>/claude-collection-optimizer.git
-cd claude-collection-optimizer
+git clone https://github.com/chanktb/claude-shopify-growth.git
+cd claude-shopify-growth
 
 # macOS / Linux
 ./install.sh
@@ -125,7 +128,7 @@ except the template is git-ignored.
 ## Repo layout
 
 ```
-claude-collection-optimizer/
+claude-shopify-growth/
 ├── skills/
 │   ├── collection-analyze/
 │   ├── collection-content-deep/
@@ -142,6 +145,20 @@ claude-collection-optimizer/
 ```
 
 ---
+
+## Roadmap
+
+`claude-shopify-growth` is a growing kit. The collection module ships today; the
+modules below are planned. Each will follow the same discipline: verified data,
+HARD gates, SEO **and** GEO (AI-search) targeting, no fabrication.
+
+- **Collection content refresh** — re-optimize existing hubs on a cadence (detect decay, refresh content + schema, keep the URL).
+- **Store-wide SEO + GEO audit** — crawl the whole store, score pages, and produce a prioritized fix queue.
+- **Product listing (PDP) optimization** — titles, descriptions, structured data, and GEO passages for product pages.
+- **Blog content generation for ecom** — SEO/GEO-optimized articles that link back into collections and products.
+- **GEO surface optimization** — tuning for AI Overviews, ChatGPT, and Perplexity citation surfaces across page types.
+
+Have a request or want to contribute a module? Open an issue.
 
 ## Credits
 

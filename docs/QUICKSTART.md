@@ -14,8 +14,8 @@ A full walkthrough from install to your first optimized collection hub.
 ## 1. Install
 
 ```bash
-git clone https://github.com/<your-org>/claude-collection-optimizer.git
-cd claude-collection-optimizer
+git clone https://github.com/chanktb/claude-shopify-growth.git
+cd claude-shopify-growth
 ./install.sh        # or ./install.ps1 on Windows
 ```
 
