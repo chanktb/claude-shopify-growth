@@ -276,6 +276,19 @@ Self-check before push:
   KB", "internal data" in customer-facing copy. State facts directly as the
   store's own product knowledge.
 
+**Anti-AI-detection (human voice)** — the trigger blocklist alone is not enough;
+the stronger tells are rhythm and vagueness:
+- **Burstiness**: vary sentence length. Mix short, punchy lines with longer ones;
+  uniform same-length sentences read as machine-generated.
+- **Concrete over vague**: replace generic claims ("high quality", "perfect for
+  everyone", "premium materials") with a specific KB fact (the actual material,
+  the measured capacity, the real use case). Specificity is the #1 human signal
+  on a PDP and also the thing a buyer actually needs.
+- **Vocabulary diversity**: don't reuse the same adjective ("great", "amazing")
+  across sections; don't open every bullet the same way.
+- **No formulaic scaffolding**: avoid "Not only... but also", "Whether you're...
+  or...", and "Looking for X? Look no further" openers.
+
 ### Step 6: Unique-copy check (HARD GATE, ties to product-analyze Cat 1.3)
 
 Compare the generated description against the manufacturer's copy (if
