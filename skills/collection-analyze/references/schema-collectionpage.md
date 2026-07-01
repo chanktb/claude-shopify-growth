@@ -176,7 +176,9 @@ For a Dawn-based theme specifically: drop in
 
 ## Audit checklist (for the SKILL Step 4)
 
-When the analyzer renders the page via WebFetch, look for:
+When the analyzer fetches the page — use `curl`, not a markdown fetch like
+WebFetch (which drops `<script type="application/ld+json">`; see the
+`collection-analyze` SKILL Step 1b warning) — look for:
 
 | Schema block | Required for tier | Audit check |
 |---|---|---|

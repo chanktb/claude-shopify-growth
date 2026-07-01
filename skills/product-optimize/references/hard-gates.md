@@ -5,8 +5,10 @@ gates marked 🛑 also carry a **Google Merchant Center feed risk** — a mismat
 there can disapprove the product and take it out of Shopping and free listings,
 which is worse than a low score. Fix 🛑 gates first, always.
 
-The shared gates (0, 1, 2, 3, 4, 5, 13) work exactly as in the collection
-module's `hard-gates.md`. This file details the PDP-specific ones.
+The shared gates (0, 1, 2, 3, 4, 5) work exactly as in the collection
+module's `hard-gates.md`. This file details the PDP-specific ones. (The "no
+source labels" gate exists in both modules, but it is Gate 13 here vs Gate 12 in
+the collection module.)
 
 ---
 

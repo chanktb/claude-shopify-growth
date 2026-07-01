@@ -2,6 +2,31 @@
 
 All notable changes to this project are documented here.
 
+## [1.1.1] — 2026-07-01
+
+Consistency + docs pass across all eight skills. No change to the optimization
+logic — only correctness of the instructions and documentation.
+
+### Fixed
+- **Schema fetching**: every skill now uses `curl` (not WebFetch) for `<head>` +
+  JSON-LD. WebFetch markdownifies the page and silently drops
+  `<script type="application/ld+json">`, which produced false "schema ABSENT"
+  audits. Corrected in the two `*-analyze` intros + Step 1b, `product-optimize`
+  Step 1, `collection-mega-hub-optimize` (the live-extraction snippet), and two
+  `collection-analyze` reference files.
+- **Gate counting**: clarified that Gate 0 is a pre-write prerequisite, so the
+  headline counts (18 collection / 14 product) refer to the numbered gates 1–N.
+  Dropped a stray "13" from the product module's shared-gate list.
+- **Dangling references**: removed six pointers to `references/*.md` files that
+  never existed in the two `*-audit-pipeline` skills — their full rubrics are
+  already inline. Also fixed a Tier-1 score-range typo (0–50 → 30 for
+  collections).
+
+### Docs
+- README: added a full "How the product optimizer works (14 gates)" section
+  paralleling the collection one, and balanced the intro to describe the product
+  module's transformation.
+
 ## [1.1.0] — 2026-07-01
 
 Added the **product module**: optimize Shopify product pages (PDPs) for SEO + GEO

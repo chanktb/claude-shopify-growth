@@ -123,8 +123,9 @@ H1 should equal the collection title OR a search-optimized rewrite.
 ### 2.5 Canonical (2 pts)
 
 Self-canonical pointing to the clean collection URL. Common Shopify mis-config:
-filter/sort query params not stripped → duplicate URLs in index. Check via
-WebFetch the response with `?sort_by=...` to see canonical behavior.
+filter/sort query params not stripped → duplicate URLs in index. Check with
+`curl -sL "<url>?sort_by=..." | grep -oi 'rel="canonical"[^>]*'` — the canonical
+tag lives in `<head>`, which a markdown fetch (WebFetch) drops.
 
 ### 2.6 Hreflang (2 pts)
 

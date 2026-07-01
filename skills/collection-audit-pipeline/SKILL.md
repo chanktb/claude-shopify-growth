@@ -28,12 +28,6 @@ Runs a 2-tier audit across ALL collections on a site (typically 50–300 for
 mid-size Shopify stores), surfacing patterns + cannibal pairs + a prioritized
 refresh queue.
 
-Reference documents:
-- `references/tier-1-quick-scan.md` — Tier 1 metadata-only checklist
-  (Shopify-connector-only, no WebFetch). Scores 0–50 per collection.
-- `references/cannibal-detection.md` — Site-wide cannibal pair matrix logic
-- `references/portfolio-report-template.md` — output HTML structure
-
 ## Input Handling
 
 - **Site domain** — e.g. `your-store.com` (resolves to Shopify connector)
@@ -86,7 +80,7 @@ For each collection, apply tier rules from `collection-analyze` SKILL.md:
 ### Phase 3 — Tier 1 quick-scan score (in-memory)
 
 For each collection, score against Shopify-metadata-only checks (no
-WebFetch needed). See `references/tier-1-quick-scan.md` for full rubric:
+WebFetch needed):
 
 | Check | Max | Detection |
 |---|---|---|
@@ -122,7 +116,7 @@ For every pair of collections (O(n²) but with cheap title-prefix bucketing):
 3. **Smart-rule tag overlap** ≥ 0.5 → candidate
 4. Combined → cannibal-pair report with verdict suggestion (MERGE / DIFFERENTIATE / PARALLEL OK)
 
-See `references/cannibal-detection.md` for the matrix logic. Output:
+Output:
 `workspace/articles/[site]/_pipeline/cannibal-pairs.md`
 
 Special-case detection: explicit version naming (V1/V2/Ver1/Ver 2/B1) →

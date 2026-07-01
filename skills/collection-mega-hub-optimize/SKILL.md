@@ -134,7 +134,9 @@ query CollectionBaseline {
 ```
 
 ```javascript
-// 1b. Live page extraction (Chrome MCP / WebFetch)
+// 1b. Live page extraction — Chrome MCP (real DOM) or `curl` for <head> + JSON-LD.
+// Do NOT use WebFetch here: it markdownifies the page and drops <head> +
+// <script ld+json>, so title / metaDesc / schemas would come back empty.
 const data = {
   title: document.title, titleLen: document.title.length,
   metaDesc: document.querySelector('meta[name=description]')?.content,
@@ -573,7 +575,11 @@ sub-agent returns a 1-line summary to the main session at a fraction of the cost
 - A decision-tree split where the output feeds the next mutation directly
 - Sensitive content already in context (round-tripping through an agent doubles tokens)
 
-## The 18 HARD Gates Summary
+## The HARD Gates Summary
+
+**18 HARD gates, numbered 1–18**, plus a pre-write **Gate 0** prerequisite
+(KB-first factcheck). Gate 0 decides whether you may start writing; Gates 1–18
+decide whether the result may ship. Failing any of them blocks the push.
 
 | Gate | Check | Pass criteria |
 |------|-------|---------------|

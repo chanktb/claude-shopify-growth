@@ -66,9 +66,13 @@ Pull in parallel:
 - **Shopify**: product (title, descriptionHtml, productType, vendor, tags,
   status, seo fields), variants (price, compareAtPrice, sku, barcode/GTIN,
   inventory, options), images + `altText`, metafields.
-- **Live page** (WebFetch): `<title>`, meta, H1, buy-box (price/stock/variant
-  selector), reviews block, JSON-LD (`Product`/`Offer`/`AggregateRating`/
-  `Breadcrumb`), image count/alt, specs table, FAQ, related block.
+- **Live page — `curl` for `<head>` + schema, render for visible content**:
+  `curl -sL` for `<title>`, meta, canonical, OG tags and the JSON-LD
+  (`Product`/`Offer`/`AggregateRating`/`Breadcrumb`). WebFetch markdownifies the
+  page and drops `<head>` + `<script ld+json>`, reporting a false "ABSENT" — the
+  same rule as Step 10. Use WebFetch/render **only** for visible content: H1,
+  buy-box (price/stock/variant selector), reviews block, image count/alt, specs
+  table, FAQ, related block.
 - **GSC 90d** (optional, `--no-gsc` to skip): clicks, impressions, position,
   CTR, top queries.
 
@@ -201,6 +205,10 @@ with `--tier product` or the closest tier icon) after Step 11 passes. Skipped
 cleanly when unconfigured.
 
 ## The HARD Gates
+
+**14 HARD gates, numbered 1–14**, plus a pre-write **Gate 0** prerequisite
+(KB-first factcheck). Gate 0 decides whether you may start writing; Gates 1–14
+decide whether the result may ship.
 
 | Gate | Check | Pass criteria |
 |------|-------|---------------|

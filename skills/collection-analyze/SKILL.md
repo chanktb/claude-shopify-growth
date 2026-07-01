@@ -26,8 +26,8 @@ metadata:
 
 Scores Shopify collection pages on a 0–100 scale across 5 commerce-focused
 categories. Pulls live data from the connected Shopify store (product list, sort
-order, image, ruleset), renders the public URL via WebFetch (markup + schema),
-and overlays Google Search Console performance (90-day clicks / impressions /
+order, image, ruleset), fetches the public URL (`curl` for `<head>` + schema, a rendered read for
+visible markup), and overlays Google Search Console performance (90-day clicks / impressions /
 position / CTR).
 
 **This skill is NOT blog-analyze.** Collection pages live by different rules:

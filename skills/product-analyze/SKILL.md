@@ -23,8 +23,8 @@ metadata:
 
 Scores a Shopify product page (PDP) on a 0–100 scale across 5 commerce-focused
 categories. Pulls live data from the connected Shopify store (product, variants,
-images, price, inventory), renders the public URL via WebFetch (markup + Product
-schema), and overlays Google Search Console performance (90-day clicks /
+images, price, inventory), fetches the public URL (`curl` for `<head>` + Product schema, a rendered read
+for visible markup), and overlays Google Search Console performance (90-day clicks /
 impressions / position / CTR).
 
 **This is NOT collection-analyze.** A PDP is the money page — it carries
@@ -80,6 +80,14 @@ JSON-LD, and a rendered read (WebFetch / headless) only for visible content:
 > A page can carry BreadcrumbList + Organization + WebSite schema yet have NO
 > `Product`/`Offer` block — check for the `Product` @type **specifically**, not
 > just "some JSON-LD exists".
+>
+> **GSC-aggregate trap:** a green "Merchant listings / Product snippets: N valid"
+> count in Search Console does NOT prove THIS product page has `Product` schema.
+> That total can be inflated entirely by `Product` markup emitted on
+> **collection / category pages** (the grid `ItemList`), so a store with zero PDP
+> schema can still show thousands of "valid" items. Trust the per-URL `curl`
+> check above, and if you open GSC, read the actual valid URLs — are they
+> products or collections? A site-level "valid" total is not per-page coverage.
 
 Extract (curl for head/schema, render for the rest):
 - `<title>`, meta description, canonical, OG/Twitter tags

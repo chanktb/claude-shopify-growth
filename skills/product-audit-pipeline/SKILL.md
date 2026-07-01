@@ -28,13 +28,6 @@ Sister skill to `collection-audit-pipeline` but for Shopify product pages
 200–5,000+ for mid-size to large Shopify stores), surfacing feed-risk gates,
 traffic-weighted gaps, and a prioritized action queue.
 
-Reference documents:
-- `references/tier-1-quick-scan.md` — Tier 1 metadata-only checklist
-  (Shopify-connector-only, no WebFetch). Scores 0–40 per product.
-- `references/opportunity-scoring.md` — traffic × gap-severity ranking logic
-  + feed-risk override rules
-- `references/portfolio-report-template.md` — output HTML/MD structure
-
 ## Input Handling
 
 - **Site** — e.g. `your-store.com` (resolves to Shopify connector)
@@ -101,7 +94,7 @@ onto the kit's portfolio-level category taxonomy for reporting:
 ### Phase 3 — Tier 1 quick-scan score (in-memory)
 
 For each product, score against Shopify-metadata-only checks (no WebFetch
-needed). See `references/tier-1-quick-scan.md` for full rubric:
+needed):
 
 | Check | Max | Detection |
 |---|---|---|

@@ -11,8 +11,13 @@ Google rankings and AI-search citations. It takes a thin collection page ("empty
 tagline + missing schema + zero internal links") and turns it into a deep,
 well-structured hub: 1,500-2,000 words of tier-aware content, a 4-schema
 structured-data bundle, 12-20 verified internal links, a keyword-dense
-sub-60-character title, and a sub-collection nav. Every step is guarded by a HARD
-gate so nothing ships half-done. More modules are on the [roadmap](#roadmap).
+sub-60-character title, and a sub-collection nav. The product module does the
+same for your product pages — the money pages: it turns a thin PDP (manufacturer
+boilerplate, no `Product` schema, no reviews surface) into a unique,
+benefits-first listing with a feed-safe `Product` / `Offer` / `AggregateRating`
+schema bundle, a specs table, and a buyer-question FAQ — without ever tripping a
+Google Merchant Center disapproval. Every step in both modules is guarded by a
+HARD gate so nothing ships half-done. More modules are on the [roadmap](#roadmap).
 
 > Field-tested at scale on a large multi-brand ecommerce catalog (mean
 > composite-score lift of +30-35 points per hub). Generalized here into a
@@ -62,7 +67,7 @@ Merchant-Center disapproval.
 
 ---
 
-## How the collection optimizer works (18 HARD gates)
+## How the collection optimizer works (Gate 0 + 18 HARD gates)
 
 The mega-hub workflow refuses to ship a page that fails any gate. Highlights:
 
@@ -83,8 +88,44 @@ The mega-hub workflow refuses to ship a page that fails any gate. Highlights:
 
 Full detail: [`skills/collection-mega-hub-optimize/SKILL.md`](skills/collection-mega-hub-optimize/SKILL.md)
 and its [`references/hard-gates.md`](skills/collection-mega-hub-optimize/references/hard-gates.md).
-The product optimizer has its own 14 gates (incl. the 🛑 feed-safety ones):
-[`skills/product-optimize/SKILL.md`](skills/product-optimize/SKILL.md).
+
+---
+
+## How the product optimizer works (Gate 0 + 14 HARD gates)
+
+`product-optimize` won't push a PDP that fails any gate — and three of them (🛑)
+are Google Merchant Center feed-safety gates that block the push even when the
+score is high, because a disapproved product earns $0 no matter how good the copy
+is. Fix the 🛑 gates first, always.
+
+- **Gate 0 — KB-first factcheck.** Pull real specs from your private
+  `knowledge-base/` before writing; never invent a dimension, material, or
+  compatibility claim.
+- **Gates 1-5 — shared hygiene.** URL inventory verified against live Shopify
+  data, HTML title ≤60 chars, zero AI-trigger phrases, zero em-dashes, zero
+  broken internal links.
+- **Gate 6 — Composite ≥85/100** on a live re-score, AND zero open feed gates.
+- **Gate 7 🛑 — Feed-safe schema.** `Offer.price` + `availability` mirror the
+  visible buy box byte-for-byte, so an optimized page never trips a Shopping
+  disapproval — this is also how a stale, hard-coded schema block gets caught.
+- **Gate 8 — Unique copy.** <70% similarity to manufacturer boilerplate, and not
+  duplicated across more than five of your own products.
+- **Gate 9 — Image alt** text on every product image.
+- **Gate 10 🛑 — Identifiers.** `gtin`/`mpn` present for known-manufacturer
+  products, or an explicit `identifier_exists: no` for legitimate private-label
+  items.
+- **Gate 11 — Rating integrity.** `AggregateRating` only when real reviews exist
+  — never hard-coded, never double-emitted by theme + review app.
+- **Gate 12 — FAQ live render** from a flat `[{q,a}]` source, verified with
+  `curl` + grep on the live page.
+- **Gate 13 — No internal source labels** ("KB", "per our data") in
+  customer-facing copy.
+- **Gate 14 — Publish notification** (optional Telegram; skipped cleanly when
+  unconfigured).
+
+Full detail:
+[`skills/product-optimize/SKILL.md`](skills/product-optimize/SKILL.md) and its
+[`references/hard-gates.md`](skills/product-optimize/references/hard-gates.md).
 
 ---
 
