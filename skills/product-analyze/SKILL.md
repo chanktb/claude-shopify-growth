@@ -124,7 +124,7 @@ every retailer). Lead with the benefit/use, then back it with specs.
 | Description depth (benefits-first) | 4 | Opens with core benefit/use, then specs; ≥150 words of unique copy |
 | Unique (not manufacturer boilerplate) | 3 | <70% similarity to the manufacturer/other-retailer copy; an original angle |
 | Buying-decision clarity | 3 | Answers who it's for, what problem it solves, what's in the box, how it compares |
-| Em-dash + AI-trigger compliance | 3 | ≤0.3 em-dash / 100 words; AI-trigger phrases ≤3 instances |
+| Human voice (AI-content signals) | 3 | ≤0.3 em-dash / 100 words; ≤3 AI-trigger phrases; **burstiness** (varied sentence length, not uniform); concrete specifics over vague filler ("high quality" / "perfect for everyone"); no formulaic scaffolding |
 | Scannability | 3 | Bullets for specs/features; short paragraphs; key info above the fold |
 
 #### Category 2 — SEO + Commercial Intent (25 points)

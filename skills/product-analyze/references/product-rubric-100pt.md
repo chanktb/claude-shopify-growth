@@ -26,6 +26,15 @@ Decision rules:
 - **Buying-decision clarity** — the copy must answer: who is this for, what
   problem does it solve, what's in the box, and how does it compare. Missing 2+
   of these caps the check at 1/3.
+- **AI-voice detection (the "Human voice" check)** — beyond the em-dash and
+  trigger-phrase counts, dock this check when the copy reads machine-generated:
+  uniform sentence length (low **burstiness**), vague filler claims ("high
+  quality", "perfect for everyone", "premium materials") instead of concrete KB
+  facts, repeated adjectives, or formulaic scaffolding ("Not only... but also",
+  "Whether you're... or...", "Looking for X? Look no further"). Two or more of
+  these signals present → cap the check at 1/3; the copy reads as AI boilerplate
+  even when the em-dash count passes. (This mirrors what `product-content-deep`
+  Step 5 enforces at write time.)
 
 ## Category 2 — SEO + Commercial Intent (25)
 
