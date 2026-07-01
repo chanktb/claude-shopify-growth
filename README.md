@@ -4,8 +4,9 @@ A [Claude Code](https://claude.com/claude-code) skill kit for growing **Shopify
 ecommerce stores** with Claude: SEO + GEO optimization and content generation
 across collections, products, and blog.
 
-**Available now — the collection module.** A four-skill workflow that audits and
-optimizes Shopify collection pages (mega-hubs, brand-hubs, category pages) for
+**Available now: two modules, collections and products.** The collection module
+is a four-skill workflow that audits and optimizes Shopify collection pages
+(mega-hubs, brand-hubs, category pages) for
 Google rankings and AI-search citations. It takes a thin collection page ("empty
 tagline + missing schema + zero internal links") and turns it into a deep,
 well-structured hub: 1,500-2,000 words of tier-aware content, a 4-schema
@@ -38,7 +39,27 @@ is self-contained — it does not depend on any other skill pack.
 
 ---
 
-## How the optimization works (18 HARD gates)
+## The product module (available now)
+
+Product pages are the money pages: they carry transactional intent and feed
+Google Shopping + AI Overviews for product queries. Four skills, same discipline
+as the collection module (KB-first factcheck, HARD gates, schema bundle), plus
+Merchant-Center feed safety.
+
+| Skill | What it does | Invoke |
+|---|---|---|
+| **product-analyze** | Scores a PDP on a 100-point rubric (copy, SEO + intent, Product schema/technical, trust & conversion, GEO/AI-citation). Flags 🛑 Merchant-Center feed risks. | `/product-analyze <url>` |
+| **product-content-deep** | Generates a unique, benefits-first description (lead → benefits → specs table → how-to → best-for → comparison → FAQ). No manufacturer boilerplate. | `/product-content-deep <url>` |
+| **product-audit-pipeline** | Portfolio-wide two-tier audit of ALL products; ranks by traffic × gap, floats feed-risk products to the top. | `/product-audit-pipeline <site>` |
+| **product-optimize** | End-to-end PDP playbook to ≥85/100 with zero feed-risk gates: rewrite + schema + trust pass + push. | `/product-optimize <handle>` |
+
+The standout gate: the `Product` / `Offer` schema must mirror the visible
+price/availability byte-for-byte, so an optimized page never trips a
+Merchant-Center disapproval.
+
+---
+
+## How the collection optimizer works (18 HARD gates)
 
 The mega-hub workflow refuses to ship a page that fails any gate. Highlights:
 
@@ -59,6 +80,8 @@ The mega-hub workflow refuses to ship a page that fails any gate. Highlights:
 
 Full detail: [`skills/collection-mega-hub-optimize/SKILL.md`](skills/collection-mega-hub-optimize/SKILL.md)
 and its [`references/hard-gates.md`](skills/collection-mega-hub-optimize/references/hard-gates.md).
+The product optimizer has its own 14 gates (incl. the 🛑 feed-safety ones):
+[`skills/product-optimize/SKILL.md`](skills/product-optimize/SKILL.md).
 
 ---
 
@@ -79,7 +102,7 @@ cd claude-shopify-growth
 ```
 
 Then in Claude Code run `/reload-plugins` (or restart the session) and the
-`/collection-*` skills are available.
+`/collection-*` and `/product-*` skills are available.
 
 ---
 
@@ -94,6 +117,12 @@ Then in Claude Code run `/reload-plugins` (or restart the session) and the
 
 # 3. Optimize one hub end-to-end
 /collection-mega-hub-optimize running-shoes --site your-store.com
+
+# 4. Audit a single product page (the money page)
+/product-analyze https://your-store.com/products/your-product
+
+# 5. Optimize a product page end-to-end (feed-safe schema + unique copy)
+/product-optimize your-product --site your-store.com
 ```
 
 See [`docs/QUICKSTART.md`](docs/QUICKSTART.md) for a full walkthrough.
@@ -133,7 +162,11 @@ claude-shopify-growth/
 │   ├── collection-analyze/
 │   ├── collection-content-deep/
 │   ├── collection-audit-pipeline/
-│   └── collection-mega-hub-optimize/
+│   ├── collection-mega-hub-optimize/
+│   ├── product-analyze/
+│   ├── product-content-deep/
+│   ├── product-audit-pipeline/
+│   └── product-optimize/
 ├── scripts/
 │   ├── notify_collection_publish.py   # optional Telegram notify (Gate 14)
 │   └── reduce_emdash.py               # em-dash density reducer (Gate 4)
@@ -148,13 +181,13 @@ claude-shopify-growth/
 
 ## Roadmap
 
-`claude-shopify-growth` is a growing kit. The collection module ships today; the
-modules below are planned. Each will follow the same discipline: verified data,
-HARD gates, SEO **and** GEO (AI-search) targeting, no fabrication.
+`claude-shopify-growth` is a growing kit. The collection and product modules ship
+today; the modules below are planned. Each follows the same discipline: verified
+data, HARD gates, SEO **and** GEO (AI-search) targeting, no fabrication.
 
 - **Collection content refresh** — re-optimize existing hubs on a cadence (detect decay, refresh content + schema, keep the URL).
-- **Store-wide SEO + GEO audit** — crawl the whole store, score pages, and produce a prioritized fix queue.
-- **Product listing (PDP) optimization** — titles, descriptions, structured data, and GEO passages for product pages.
+- **Product refresh** — re-optimize existing PDPs on a cadence (price/availability drift, review growth, seasonal angle).
+- **Store-wide SEO + GEO audit** — crawl the whole store, score every page type, and produce a prioritized fix queue.
 - **Blog content generation for ecom** — SEO/GEO-optimized articles that link back into collections and products.
 - **GEO surface optimization** — tuning for AI Overviews, ChatGPT, and Perplexity citation surfaces across page types.
 
